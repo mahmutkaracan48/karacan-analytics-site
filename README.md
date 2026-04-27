@@ -1,28 +1,41 @@
 # karacan-analytics.com — vitrin (statik)
 
-Profesyonel tek sayfa + Privacy + Terms. **Build yok:** Vercel / Cloudflare Pages / Netlify ile doğrudan deploy.
+Profesyonel site + Privacy + Terms. **Build yok:** Vercel / Cloudflare Pages / Netlify ile doğrudan deploy.
 
 **Repo:** https://github.com/mahmutkaracan48/karacan-analytics-site
 
-**Stripe sırası:** Önce siteyi **canlı URL** ile yayınla (Vercel + `karacan-analytics.com`) → Stripe işletme bilgisinde bu URL → Payment Link → sonra `index.html` içindeki `stripeUrl`.
+## Conversion odaklı ana sayfa (Snapshot + Monitoring + Analytics)
 
-## Stripe ile bağlama
+`index.html` artık üç satırı birlikte taşır:
 
-1. Stripe Dashboard → **Payment links** → ürün / fiyat oluştur → linki kopyala.
-2. `index.html` içinde `<script>` bloğunda `var stripeUrl = "";` satırına Payment Link URL'ini yapıştır veya `id="stripe-pay"` anchor'ın `href`'ini değiştir.
-3. Stripe'da **Business settings → Public business information** içinde bu site URL'sini göster.
+1. **Accessibility Risk Snapshot** (`#snapshot`) — Stripe Payment Link: `KA_STRIPE_SNAPSHOT` (script bloğu). Boşsa butonlar `mailto:contact@karacan-analytics.com` ile Stripe linki ister.
+2. **Monitoring (MRR)** — tabloda `mailto:` ile başlat; Stripe Subscription linkleri hazır olunca aynı hücrelere yapıştır.
+3. **Analytics sprint** — mevcut Payment Link: `KA_STRIPE_ANALYTICS_SPRINT`.
+
+## VSL (video) embed
+
+YouTube **unlisted** (veya Wistia/Vimeo) embed URL’ini `index.html` sonundaki script’te ayarla:
+
+```js
+var KA_VSL_EMBED_URL = "https://www.youtube.com/embed/VIDEO_ID";
+```
+
+Boş bırakılırsa sayfada yer tutucu metin görünür.
+
+## Stripe sırası
+
+1. Siteyi canlı URL ile yayınla.
+2. Stripe Dashboard → **Payment links** → Snapshot ürünü için link → `KA_STRIPE_SNAPSHOT`.
+3. İşletme bilgisinde bu domain gösterilsin.
 
 ## Vercel deploy
 
-1. [vercel.com](https://vercel.com) → New Project → Import **mahmutkaracan48/karacan-analytics-site**.
-2. Framework: **Other** (static). Root: repo kökü.
-3. **Settings → Domains** → `karacan-analytics.com` (ve isteğe bağlı `www`).
-4. DNS sağlayıcısında Vercel'in verdiği kayıtları ekle.
+1. [vercel.com](https://vercel.com) → Import **mahmutkaracan48/karacan-analytics-site**.
+2. Framework: **Other** (static).
+3. **Domains** → `karacan-analytics.com`.
 
-## Senin düzenlemen gerekenler
+## İletişim e-postası
 
-- `hello@karacan-analytics.com` — gerçek iletişim e-postası.
-- Footer'daki **NJ iş adresi** — Apex `Compliance_Config` ile aynı olmalı.
-- `privacy.html` / `terms.html` — avukat gözden geçirmesi.
+Varsayılan: **contact@karacan-analytics.com** — tüm `mailto:` ve footer ile uyumlu tut.
 
-Manuel Git push için: [DEPLOY_GITHUB.md](./DEPLOY_GITHUB.md)
+Manuel Git: [DEPLOY_GITHUB.md](./DEPLOY_GITHUB.md)

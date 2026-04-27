@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Karacan Analytics — B2B analytics & measurement</title>
+    <title>Karacan Analytics — Revenue analytics & accessibility risk (US B2B)</title>
     <meta
       name="description"
-      content="Karacan Analytics helps US businesses turn marketing and operations data into revenue — reporting, attribution, and decision-ready dashboards."
+      content="Karacan Analytics: fixed-scope analytics sprints plus Accessibility Risk Snapshots, monthly monitoring, and remediation—Stripe checkout, NJ-based B2B."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,10 +23,13 @@
       <div class="wrap nav">
         <a class="logo" href="./">Karacan Analytics</a>
         <nav class="nav-links" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#process">How we work</a>
+          <a href="#snapshot">Snapshot</a>
+          <a href="#monitoring">Monitoring</a>
+          <a href="#analytics">Analytics sprint</a>
+          <a href="#remediation">Remediation</a>
+          <a href="#vsl">Video</a>
           <a href="#contact">Contact</a>
-          <a class="btn btn-primary" id="cta-nav" href="#pay">Book &amp; pay</a>
+          <a class="btn btn-primary btn-nav" data-cta="snapshot" href="#snapshot">Get Snapshot</a>
         </nav>
       </div>
     </header>
@@ -36,54 +39,200 @@
         <div class="wrap hero-grid">
           <div>
             <span class="eyebrow">US-focused B2B</span>
-            <h1 id="hero-title">Analytics that tie spend to revenue — not vanity charts.</h1>
+            <h1 id="hero-title">Turn spend into revenue—and close the accessibility blind spot.</h1>
             <p class="lead">
-              We build measurement you can defend: clean event definitions, funnel and cohort views, and
-              executive-ready reporting your team will actually use.
+              Fixed-scope <strong>analytics sprints</strong> your CFO can defend, plus an
+              <strong>Accessibility Risk Snapshot</strong> you can act on this week. Pay by card through Stripe; clear
+              deliverables, no black-box dashboards.
             </p>
             <div class="hero-cta">
-              <a class="btn btn-primary" id="cta-hero" href="#pay">Start with a paid sprint</a>
-              <a class="btn btn-ghost" href="mailto:hello@karacan-analytics.com">Email us</a>
+              <a class="btn btn-primary" data-cta="snapshot" href="#snapshot">Get Accessibility Snapshot</a>
+              <a class="btn btn-ghost" data-cta="analytics-sprint" href="#analytics">Book analytics sprint</a>
             </div>
             <div class="trust-row" aria-label="Trust signals">
               <span>Stripe-secured checkout</span>
-              <span>Clear scope &amp; timelines</span>
+              <span>Written scope &amp; timelines</span>
               <span>English-first delivery</span>
+              <span>Automated screening — not legal advice</span>
             </div>
           </div>
-          <div class="panel" role="region" aria-label="What you get">
-            <h2>Typical engagement</h2>
-            <p>Fixed-scope analytics sprint: discovery → tracking plan → dashboard → handoff.</p>
-            <ul>
-              <li>GA4 / ad platform audit &amp; fix list</li>
-              <li>Conversion definitions aligned with finance</li>
-              <li>Looker Studio, Sheets, or your BI tool</li>
-              <li>30-day Slack / email support window</li>
+          <div class="panel panel-cta" role="region" aria-label="Fast paths">
+            <h2>Choose a path</h2>
+            <ul class="path-list">
+              <li>
+                <strong>Snapshot</strong> — from <span class="price-tag">$497</span><br /><span class="fine">Prioritized findings + delivery artifact.</span>
+              </li>
+              <li>
+                <strong>Monitoring</strong> — from <span class="price-tag">$149/mo</span><br /><span class="fine">Re-scan cadence + change report.</span>
+              </li>
+              <li>
+                <strong>Remediation</strong> — <span class="price-tag">$2,500+</span><br /><span class="fine">Apply for a scoped implementation sprint.</span>
+              </li>
             </ul>
+            <a class="btn btn-primary full-width" data-cta="snapshot" href="#snapshot">Start with Snapshot</a>
           </div>
         </div>
       </section>
 
-      <section id="services" aria-labelledby="services-title">
+      <section id="vsl" class="vsl-block" aria-labelledby="vsl-title">
         <div class="wrap">
-          <h2 id="services-title">What we deliver</h2>
+          <h2 id="vsl-title">90-second overview</h2>
           <p class="section-lead">
-            Whether you run paid social, outbound, or partner-led growth — we make sure you can answer:
-            <em>what worked, what broke, and what to do next week.</em>
+            Watch the walkthrough, then grab your Snapshot. (After upload, set <code>KA_VSL_EMBED_URL</code> in the
+            script at the bottom of this file — see README.)
+          </p>
+          <div class="video-shell" id="vsl-embed" aria-label="Product video">
+            <p class="video-placeholder">
+              Your VSL will appear here. Use a YouTube <em>unlisted</em> embed URL or hosted file — update
+              <code>KA_VSL_EMBED_URL</code> in <code>index.html</code>.
+            </p>
+          </div>
+          <div class="hero-cta vsl-cta">
+            <a class="btn btn-primary" data-cta="snapshot" href="#snapshot">Get Snapshot</a>
+            <a class="btn btn-ghost" href="#monitoring">See monitoring tiers</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="snapshot" aria-labelledby="snapshot-title">
+        <div class="wrap split-band">
+          <div>
+            <span class="eyebrow">Self-serve</span>
+            <h2 id="snapshot-title">Accessibility Risk Snapshot</h2>
+            <p class="section-lead">
+              A decision-ready pack: prioritized issues, evidence from automated review, and a clear next-step order.
+              <strong>Not legal advice</strong>—a screening artifact your team can route to design or engineering.
+            </p>
+            <ul class="checklist">
+              <li>Fixed scope, fixed turnaround (stated in checkout / email)</li>
+              <li>PDF/HTML deliverable + short executive summary</li>
+              <li>Optional upgrade to monthly monitoring</li>
+            </ul>
+            <p class="price-large"><span class="price-tag">$497</span> <span class="fine">one-time</span></p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" data-cta="snapshot" href="#snapshot">Pay with Stripe</a>
+              <a class="btn btn-ghost" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20question">Ask a question</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="monitoring" aria-labelledby="monitoring-title">
+        <div class="wrap">
+          <h2 id="monitoring-title">Continuous monitoring (MRR)</h2>
+          <p class="section-lead">
+            Keep drift visible: scheduled re-scan, delta report, and what changed since last month. Cancel if it stops
+            earning its keep.
+          </p>
+          <div class="pricing-wrap">
+            <table class="pricing-table">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>From</th>
+                  <th>Best for</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Lite</strong></td>
+                  <td>$149/mo</td>
+                  <td>Limited URLs / monthly delta summary</td>
+                  <td>
+                    <a
+                      class="btn btn-sm"
+                      href="mailto:contact@karacan-analytics.com?subject=Monitoring%20Lite%20%E2%80%94%20start"
+                      >Start</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Pro</strong></td>
+                  <td>$299/mo</td>
+                  <td>Broader crawl + priority queue + light async support</td>
+                  <td>
+                    <a
+                      class="btn btn-sm"
+                      href="mailto:contact@karacan-analytics.com?subject=Monitoring%20Pro%20%E2%80%94%20start"
+                      >Start</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Enterprise</strong></td>
+                  <td>$399/mo</td>
+                  <td>Multi-location / higher page budgets</td>
+                  <td>
+                    <a
+                      class="btn btn-sm"
+                      href="mailto:contact@karacan-analytics.com?subject=Monitoring%20Enterprise%20%E2%80%94%20scope"
+                      >Scope call</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="fine" style="margin-top: 1rem">
+              Stripe subscription links can replace mailto links once products are created in Dashboard.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="analytics" aria-labelledby="analytics-title">
+        <div class="wrap">
+          <span class="eyebrow">Measurement</span>
+          <h2 id="analytics-title">Analytics sprint (spend → revenue)</h2>
+          <p class="section-lead">
+            Discovery → tracking plan → dashboards → handoff. Same operating model as before—now listed beside
+            accessibility so buyers see the full Karacan stack.
           </p>
           <div class="cards">
             <article class="card">
               <h3>Measurement architecture</h3>
-              <p>Event naming, UTM discipline, server-side tagging guidance, and data layer specs your devs can implement.</p>
+              <p>Event naming, UTM discipline, server-side tagging guidance, and data layer specs your devs can ship.</p>
             </article>
             <article class="card">
               <h3>Revenue reporting</h3>
-              <p>Pipeline and revenue views that match your CRM — so marketing and sales stop arguing about the numbers.</p>
+              <p>Pipeline and revenue views aligned with finance so marketing and sales share one truth.</p>
             </article>
             <article class="card">
               <h3>Operator playbooks</h3>
-              <p>Weekly readouts: spend, CAC proxy, reply-to-meeting rates, and simple guardrails to protect margin.</p>
+              <p>Weekly readouts: spend, CAC proxy, reply-to-meeting, guardrails to protect margin.</p>
             </article>
+          </div>
+          <div class="cta-band" style="margin-top: 2rem">
+            <h2>Book a paid analytics sprint</h2>
+            <p>
+              Fixed scope. You receive a Stripe checkout link by email after we align on the written scope—or pay
+              directly when your link is live.
+            </p>
+            <a class="btn btn-primary" data-cta="analytics-sprint" id="stripe-pay" href="#analytics">Pay securely with Stripe</a>
+            <p class="fine" style="margin: 1rem 0 0">
+              Prefer email first?
+              <a href="mailto:contact@karacan-analytics.com?subject=Paid%20analytics%20sprint%20%E2%80%94%20scope"
+                >Request scope &amp; quote</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="remediation" aria-labelledby="remediation-title">
+        <div class="wrap">
+          <h2 id="remediation-title">Remediation sprint ($2,500+)</h2>
+          <p class="section-lead">
+            For teams that want implementation—not just a report. <strong>Human-reviewed</strong> patches and a
+            before/after risk memo. Apply so we can confirm stack, scope, and timeline.
+          </p>
+          <div class="hero-cta">
+            <a
+              class="btn btn-primary"
+              href="mailto:contact@karacan-analytics.com?subject=Remediation%20sprint%20%E2%80%94%20apply%20%28website%29"
+              >Request remediation — apply</a
+            >
+            <a class="btn btn-ghost" href="#snapshot">Start with a Snapshot instead</a>
           </div>
         </div>
       </section>
@@ -91,43 +240,20 @@
       <section id="process" aria-labelledby="process-title">
         <div class="wrap">
           <h2 id="process-title">How we work</h2>
-          <p class="section-lead">
-            Short cycles, written scope, async-first. You get artifacts you own — not a black-box "AI dashboard."
-          </p>
+          <p class="section-lead">Short cycles, written scope, async-first. You own the artifacts.</p>
           <div class="cards">
             <article class="card">
               <h3>1. Align on decisions</h3>
-              <p>Which 3–5 questions must this data answer for the CEO or growth lead?</p>
+              <p>Which 3–5 questions must this answer for the CEO or growth lead?</p>
             </article>
             <article class="card">
               <h3>2. Instrument &amp; validate</h3>
-              <p>We fix tracking before we scale reporting — garbage in is non-negotiable.</p>
+              <p>We fix tracking before we scale reporting—garbage in is non-negotiable.</p>
             </article>
             <article class="card">
               <h3>3. Ship &amp; train</h3>
-              <p>Dashboards, doc links, and a 60-minute walkthrough so your team is unblocked.</p>
+              <p>Dashboards, doc links, and a walkthrough so your team is unblocked.</p>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="pay" aria-labelledby="pay-title">
-        <div class="wrap">
-          <div class="cta-band">
-            <h2 id="pay-title">Book a paid analytics sprint</h2>
-            <p>
-              Fixed-scope engagements (discovery, tracking plan, dashboards, handoff). Invoicing and secure card
-              checkout are handled through Stripe when you receive your payment link by email.
-            </p>
-            <a
-              class="btn btn-primary"
-              id="stripe-pay"
-              href="mailto:hello@karacan-analytics.com?subject=Paid%20analytics%20sprint%20%E2%80%94%20karacan-analytics.com"
-              >Request scope &amp; quote</a
-            >
-            <p style="margin: 1rem 0 0; font-size: 0.8125rem; color: var(--muted)">
-              Prefer to pay by card? Reply to our email and we will send a Stripe checkout link for the agreed scope.
-            </p>
           </div>
         </div>
       </section>
@@ -136,8 +262,7 @@
         <div class="wrap">
           <h2 id="contact-title">Contact</h2>
           <p class="section-lead">
-            <strong>Email:</strong>
-            <a href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a><br />
+            <strong>Email:</strong> <a href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a><br />
             We respond within two US business days for qualified B2B inquiries.
           </p>
         </div>
@@ -165,17 +290,43 @@
       </div>
     </footer>
     <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-      var stripeUrl = "https://buy.stripe.com/4gMaEYgs2aRbdcl6ec0VO00";
-      if (stripeUrl) {
-        var b = document.getElementById("stripe-pay");
-        var h = document.getElementById("cta-hero");
-        var n = document.getElementById("cta-nav");
-        b.href = stripeUrl;
-        b.textContent = "Pay securely with Stripe";
-        if (h) h.href = stripeUrl;
-        if (n) n.href = stripeUrl;
-      }
+      (function () {
+        var KA_STRIPE_ANALYTICS_SPRINT = "https://buy.stripe.com/4gMaEYgs2aRbdcl6ec0VO00";
+        var KA_STRIPE_SNAPSHOT = "";
+        var KA_VSL_EMBED_URL = "";
+
+        document.getElementById("y").textContent = new Date().getFullYear();
+
+        function setSprint(el) {
+          if (!el) return;
+          el.href = KA_STRIPE_ANALYTICS_SPRINT;
+        }
+        function setSnapshot(el) {
+          if (!el) return;
+          if (KA_STRIPE_SNAPSHOT) {
+            el.href = KA_STRIPE_SNAPSHOT;
+          } else {
+            el.href =
+              "mailto:contact@karacan-analytics.com?subject=Accessibility%20Risk%20Snapshot%20%E2%80%94%20send%20Stripe%20link";
+          }
+        }
+
+        document.querySelectorAll('[data-cta="analytics-sprint"]').forEach(setSprint);
+        document.querySelectorAll('[data-cta="snapshot"]').forEach(setSnapshot);
+
+        var pay = document.getElementById("stripe-pay");
+        if (pay) {
+          pay.textContent = "Pay securely with Stripe";
+        }
+
+        var shell = document.getElementById("vsl-embed");
+        if (shell && KA_VSL_EMBED_URL) {
+          shell.innerHTML =
+            '<iframe title="Karacan Analytics overview" src="' +
+            KA_VSL_EMBED_URL +
+            '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+        }
+      })();
     </script>
   </body>
 </html>
