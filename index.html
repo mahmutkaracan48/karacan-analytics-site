@@ -23,6 +23,7 @@
       <div class="wrap nav">
         <a class="logo" href="./">Karacan Analytics</a>
         <nav class="nav-links" aria-label="Primary">
+          <a href="#story">Overview video</a>
           <a href="#outcomes">Outcomes</a>
           <a href="#deliverables">Deliverables</a>
           <a href="#faq">FAQ</a>
@@ -44,8 +45,10 @@
             </p>
             <div class="hero-cta">
               <a class="btn btn-primary" id="cta-hero" href="#pay">Get $497 Snapshot</a>
+              <a class="btn btn-ghost" href="#story">Watch 90s overview</a>
               <a class="text-link" href="mailto:hello@karacan-analytics.com?subject=Snapshot%20question">Questions? Email us</a>
             </div>
+            <p class="hero-site-link" id="hero-site-link"></p>
             <div class="trust-row" aria-label="Trust signals">
               <span>USD fixed price: $497</span>
               <span>Delivery target: 24-48 hours</span>
@@ -78,6 +81,32 @@
               finding list and action order unlock with the fixed <strong>$497 Snapshot</strong>.
             </p>
             <a class="btn btn-primary" href="#pay">Get $497 Snapshot</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" aria-labelledby="story-title">
+        <div class="wrap">
+          <div class="ka-vsl-card">
+            <p class="ka-vsl-eyebrow">Conversion clarity</p>
+            <h2 id="story-title">90-second overview — what you buy, what you skip</h2>
+            <p class="section-lead ka-vsl-lead">
+              Emails stay short on purpose. Here is the full picture: fixed <strong>$497</strong> scope, what ships in
+              12–24 hours, refund window before work starts, and the same Stripe checkout you will see after your
+              blurred preview.
+            </p>
+            <ul class="ka-vsl-checklist" aria-label="Snapshot highlights">
+              <li>Three prioritized accessibility risks with evidence screenshots</li>
+              <li>Developer-ready action order (not generic “best practices”)</li>
+              <li>Plain summary for leadership — technical guidance, not legal advice</li>
+            </ul>
+            <div id="ka-vsl-root" class="ka-vsl-root" aria-live="polite"></div>
+            <div class="ka-vsl-cta-row">
+              <a class="btn btn-primary" id="cta-story" href="#pay">Pay securely with Stripe — $497</a>
+              <a class="btn btn-ghost" href="mailto:hello@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link"
+                >Need an invoice link?</a
+              >
+            </div>
           </div>
         </div>
       </section>
@@ -163,7 +192,7 @@
             </article>
             <article class="card">
               <h3>Refund clarity</h3>
-              <p>Full refund available before review starts. After report delivery, refund is not available.</p>
+              <p>Full refund if you cancel before we begin the snapshot review. After the report is delivered, refund is not available.</p>
             </article>
             <article class="card">
               <h3>Policy clarity</h3>
@@ -220,7 +249,7 @@
             </article>
             <article class="faq-item">
               <h3>What is the refund policy?</h3>
-              <p>Refund is available before analysis starts. Once the snapshot report is delivered, refund is not available.</p>
+              <p>Refund is available before we begin the snapshot review. Once the snapshot report is delivered, refund is not available.</p>
             </article>
           </div>
           <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
@@ -232,8 +261,14 @@
           <div class="cta-band">
             <h2 id="pay-title">Get your Accessibility Risk Snapshot</h2>
             <p>
-              One-time fixed scope at <strong>$497</strong>. Secure Stripe checkout. If you need custom invoicing,
+              One-time fixed scope at <strong>$497</strong>. Secure Stripe checkout (live). If you need custom invoicing,
               email us and we will send a direct payment link.
+            </p>
+            <p class="micro-copy" style="margin-top: 12px; max-width: 52ch">
+              <strong>Refund:</strong> full refund if you cancel before we start the snapshot review. After the report is
+              delivered, fees are non-refundable. See
+              <a href="terms.html#snapshot-purchase">Terms (Snapshot purchase)</a> and
+              <a href="privacy.html">Privacy</a> (payments are processed by Stripe; we do not store card numbers on this site).
             </p>
             <a
               class="btn btn-primary"
@@ -280,18 +315,63 @@
         <span>&copy; <span id="y"></span> Karacan Analytics LLC</span>
       </div>
     </footer>
+    <script src="assets/checkout-config.js"></script>
     <script>
       document.getElementById("y").textContent = new Date().getFullYear();
-      var stripeUrl = "https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01";
+      var cfg = window.KA_CHECKOUT || {};
+      var base = (cfg.siteBaseUrl || "https://karacan-analytics.com").replace(/\/$/, "");
+      var hsl = document.getElementById("hero-site-link");
+      if (hsl) {
+        hsl.innerHTML =
+          'Prefer reading on the site? <a href="' +
+          base +
+          '/#story">' +
+          base.replace(/^https:\/\//, "") +
+          "</a> — same offer, same Stripe checkout.";
+      }
+      var stripeUrl = cfg.stripeSnapshotUrl || "";
       if (stripeUrl) {
         var b = document.getElementById("stripe-pay");
         var h = document.getElementById("cta-hero");
         var n = document.getElementById("cta-nav");
+        var s = document.getElementById("cta-story");
         b.href = stripeUrl;
         b.textContent = "Pay securely with Stripe";
         if (h) h.href = stripeUrl;
         if (n) n.href = stripeUrl;
+        if (s) {
+          s.href = stripeUrl;
+          s.textContent = "Pay securely with Stripe — $497";
+        }
       }
+      (function () {
+        var v = (cfg && cfg.overviewVideoUrl) || "";
+        var root = document.getElementById("ka-vsl-root");
+        if (!root) return;
+        v = String(v).trim();
+        if (!v) {
+          root.innerHTML =
+            '<div class="ka-vsl-placeholder"><p class="ka-vsl-placeholder-title">Video slot ready</p><p class="muted">Add your 60–120s overview (face + screen or simple motion text). Host as <strong>YouTube unlisted</strong> or HTTPS <strong>.mp4</strong>, then set <code>overviewVideoUrl</code> in <code>assets/checkout-config.js</code> and redeploy.</p></div>';
+          return;
+        }
+        if (/\.mp4(\?|$)/i.test(v)) {
+          root.innerHTML =
+            '<div class="video-frame"><video controls playsinline preload="metadata" src="' +
+            v.replace(/"/g, "") +
+            '">Video not supported in this browser.</video></div>';
+          return;
+        }
+        var embed = v.replace(/"/g, "");
+        if (embed.indexOf("youtube.com/watch?v=") >= 0) {
+          embed = embed.replace("watch?v=", "embed/");
+        } else if (embed.indexOf("youtu.be/") >= 0) {
+          embed = embed.replace("youtu.be/", "www.youtube.com/embed/");
+        }
+        root.innerHTML =
+          '<div class="video-frame"><iframe src="' +
+          embed +
+          '" title="Karacan Analytics overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+      })();
     </script>
   </body>
 </html>
