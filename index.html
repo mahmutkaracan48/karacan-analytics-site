@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,21 +9,11 @@
       name="description"
       content="Get a fixed-scope Accessibility Risk Snapshot for your site. Clear findings, evidence screenshots, and action order your team can apply."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%230ea5e9' rx='6' width='32' height='32'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%230b1220' font-size='18' font-family='sans-serif' font-weight='700'>K</text></svg>" />
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "wsxqx462hv");
-    </script>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%230ea5e9' rx='6' width='32' height='32'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%230b1220' font-size='18' font-family='sans-serif' font-weight='700'>K</text></svg>"
+    />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -37,14 +28,14 @@
           <a href="#contact">Contact</a>
           <a class="btn btn-primary" id="cta-nav" href="#pay">Get $497 Snapshot</a>
         </nav>
-      </div>
+      </motion>
     </header>
 
     <main id="main">
       <section id="risk-dashboard" class="risk-dashboard-band" aria-label="Compliance and revenue impact">
         <div class="wrap risk-dashboard-grid">
           <div class="risk-alert" role="alert">
-            <p class="risk-alert-eyebrow">ADA Compliance Risk</p>
+            <p class="risk-alert-eyebrow">ADA Compliance Audit Status</p>
             <p class="risk-alert-value">HIGH RISK</p>
             <p class="risk-alert-sub">
               Illustrative signals from public-page accessibility friction — heuristic review, not legal advice.
@@ -52,7 +43,7 @@
           </div>
           <div class="roi-card">
             <p class="roi-label">Estimated Monthly Recoverable Revenue</p>
-            <p class="roi-value" id="roi-estimate">$4,830</p>
+            <p class="roi-value" id="roi-estimate">$144,000</p>
             <p class="roi-note">
               Modeled recovery if high-friction booking paths are fixed — illustrative, not a guarantee.
             </p>
@@ -61,7 +52,7 @@
       </section>
 
       <section class="hero" aria-labelledby="hero-title">
-        <div class="wrap hero-grid">
+        <motion class="wrap hero-grid">
           <div>
             <span class="eyebrow">Fixed scope. Fast delivery.</span>
             <h1 id="hero-title">Accessibility Risk Snapshot for teams that need clear next steps.</h1>
@@ -72,12 +63,12 @@
             <div class="hero-cta">
               <a class="btn btn-primary" id="cta-hero" href="#pay">Get $497 Snapshot</a>
               <a class="btn btn-ghost" href="#risk-dashboard">See risk &amp; ROI</a>
-              <a class="text-link" href="mailto:hello@karacan-analytics.com?subject=Snapshot%20question">Questions? Email us</a>
+              <a class="text-link" id="cta-email-hero" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20question">Questions? Email us</a>
             </div>
             <p class="hero-site-link" id="hero-site-link"></p>
             <div class="trust-row" aria-label="Trust signals">
               <span>USD fixed price: $497</span>
-              <span>Delivery target: 24-48 hours</span>
+              <span>Delivery target: 12–24 hours</span>
               <span>Stripe-secured checkout</span>
             </div>
           </div>
@@ -131,9 +122,7 @@
             </p>
             <div class="ka-vsl-cta-row">
               <a class="btn btn-primary" id="cta-story" href="#pay">Pay securely with Stripe — $497</a>
-              <a class="btn btn-ghost" href="mailto:hello@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link"
-                >Need an invoice link?</a
-              >
+              <a class="btn btn-ghost" id="cta-email-story" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link">Need an invoice link?</a>
             </div>
           </div>
         </div>
@@ -166,9 +155,7 @@
       <section id="deliverables" aria-labelledby="deliverables-title">
         <div class="wrap">
           <h2 id="deliverables-title">Scope and delivery</h2>
-          <p class="section-lead">
-            This is a bounded snapshot, not an open-ended retainer.
-          </p>
+          <p class="section-lead">This is a bounded snapshot, not an open-ended retainer.</p>
           <div class="split-grid">
             <article class="card">
               <h3>Included</h3>
@@ -200,7 +187,7 @@
             <article class="step">
               <span>Step 1</span>
               <h3>Checkout</h3>
-              <p>Use Stripe checkout or request payment link by email.</p>
+              <p>Use Stripe checkout or request a payment link by email.</p>
             </article>
             <article class="step">
               <span>Step 2</span>
@@ -210,17 +197,17 @@
             <article class="step">
               <span>Step 3</span>
               <h3>Deliver</h3>
-              <p>You receive findings, evidence, and action order in 24-48 hours.</p>
+              <p>You receive findings, evidence, and action order in 12–24 hours.</p>
             </article>
           </div>
           <div class="trust-grid">
             <article class="card">
               <h3>Delivery window</h3>
-              <p>Typical delivery is 24-48 hours after payment and scope confirmation.</p>
+              <p>Typical delivery is 12–24 hours after payment and scope confirmation.</p>
             </article>
             <article class="card">
               <h3>Refund clarity</h3>
-              <p>Full refund if you cancel before we begin the snapshot review. After the report is delivered, refund is not available.</p>
+              <p>Full refund if you cancel before we begin the snapshot review. After delivery, refund is not available.</p>
             </article>
             <article class="card">
               <h3>Policy clarity</h3>
@@ -229,13 +216,13 @@
                 <a href="privacy.html">Privacy</a> and <a href="terms.html">Terms</a>.
               </p>
             </article>
-          </div>
+          </motion>
           <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
         </div>
       </section>
 
       <section id="fit" aria-labelledby="fit-title">
-        <div class="wrap">
+        <motion class="wrap">
           <h2 id="fit-title">Best fit</h2>
           <div class="split-grid">
             <article class="card">
@@ -262,14 +249,14 @@
       <section id="faq" aria-labelledby="faq-title">
         <div class="wrap">
           <h2 id="faq-title">Frequently asked questions</h2>
-          <div class="faq-list">
+          <motion class="faq-list">
             <article class="faq-item">
               <h3>Is this legal advice?</h3>
               <p>No. This snapshot is a technical risk review and implementation guidance, not legal advice.</p>
             </article>
             <article class="faq-item">
               <h3>How fast is delivery?</h3>
-              <p>Typical delivery is within 24-48 hours after confirmed payment and scope confirmation.</p>
+              <p>Typical delivery is within 12–24 hours after confirmed payment and scope confirmation.</p>
             </article>
             <article class="faq-item">
               <h3>What happens after the snapshot?</h3>
@@ -289,8 +276,8 @@
           <div class="cta-band">
             <h2 id="pay-title">Get your Accessibility Risk Snapshot</h2>
             <p>
-              One-time fixed scope at <strong>$497</strong>. Secure Stripe checkout (live). If you need custom invoicing,
-              email us and we will send a direct payment link.
+              One-time fixed scope at <strong>$497</strong>. Secure Stripe checkout (live). For custom invoicing,
+              email <a id="contact-inline-pay" href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a>.
             </p>
             <p class="micro-copy" style="margin-top: 12px; max-width: 52ch">
               <strong>Refund:</strong> full refund if you cancel before we start the snapshot review. After the report is
@@ -301,12 +288,10 @@
             <a
               class="btn btn-primary"
               id="stripe-pay"
-              href="mailto:hello@karacan-analytics.com?subject=Accessibility%20Risk%20Snapshot%20%E2%80%94%20Payment%20Link"
+              href="mailto:contact@karacan-analytics.com?subject=Accessibility%20Risk%20Snapshot%20%E2%80%94%20Payment%20Link"
               >Get $497 Snapshot</a
             >
-            <p class="micro-copy">
-              Once payment is confirmed, snapshot delivery starts immediately.
-            </p>
+            <p class="micro-copy">Once payment is confirmed, snapshot delivery starts immediately.</p>
           </div>
         </div>
       </section>
@@ -316,7 +301,7 @@
           <h2 id="contact-title">Contact</h2>
           <p class="section-lead">
             <strong>Email:</strong>
-            <a href="mailto:hello@karacan-analytics.com">hello@karacan-analytics.com</a><br />
+            <a id="contact-inline" href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a><br />
             We respond within one US business day.
           </p>
         </div>
@@ -343,11 +328,21 @@
         <span>&copy; <span id="y"></span> Karacan Analytics LLC</span>
       </div>
     </footer>
-    <script src="assets/checkout-config.js"></script>
-    <script>
+    <script src="assets/checkout-config.js" defer></script>
+    <script defer>
       document.getElementById("y").textContent = new Date().getFullYear();
       var cfg = window.KA_CHECKOUT || {};
       var base = (cfg.siteBaseUrl || "https://karacan-analytics.com").replace(/\/$/, "");
+      var email = (cfg.supportEmail || "contact@karacan-analytics.com").trim();
+      var mail = "mailto:" + email;
+      ["cta-email-hero", "cta-email-story", "contact-inline", "contact-inline-pay"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (el.id === "cta-email-hero") el.href = mail + "?subject=Snapshot%20question";
+        else if (el.id === "cta-email-story") el.href = mail + "?subject=Snapshot%20%E2%80%94%20invoice%20link";
+        else el.href = mail;
+        if (el.id === "contact-inline" || el.id === "contact-inline-pay") el.textContent = email;
+      });
       var hsl = document.getElementById("hero-site-link");
       if (hsl) {
         hsl.innerHTML =
@@ -359,19 +354,29 @@
       }
       var stripeUrl = cfg.stripeSnapshotUrl || "";
       if (stripeUrl) {
-        var b = document.getElementById("stripe-pay");
-        var h = document.getElementById("cta-hero");
-        var n = document.getElementById("cta-nav");
-        var s = document.getElementById("cta-story");
-        b.href = stripeUrl;
-        b.textContent = "Pay securely with Stripe";
-        if (h) h.href = stripeUrl;
-        if (n) n.href = stripeUrl;
-        if (s) {
-          s.href = stripeUrl;
-          s.textContent = "Pay securely with Stripe — $497";
-        }
+        ["stripe-pay", "cta-hero", "cta-nav", "cta-story"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.href = stripeUrl;
+          if (id === "stripe-pay") el.textContent = "Pay securely with Stripe — $497";
+          if (id === "cta-story") el.textContent = "Pay securely with Stripe — $497";
+        });
       }
+    </script>
+    <script>
+      window.addEventListener("load", function () {
+        (function (c, l, a, r, i) {
+          c[a] =
+            c[a] ||
+            function () {
+              (c[a].q = c[a].q || []).push(arguments);
+            };
+          var t = l.createElement(r);
+          t.async = 1;
+          t.src = "https://www.clarity.ms/tag/" + i;
+          l.head.appendChild(t);
+        })(window, document, "clarity", "script", "wsxqx462hv");
+      });
     </script>
   </body>
 </html>
