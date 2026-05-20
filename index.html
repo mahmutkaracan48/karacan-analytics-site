@@ -151,7 +151,7 @@
           </a>
           <p class="hero-site-link wrap" id="hero-site-link"></p>
           <p class="wrap muted" style="margin-top: -0.5rem">
-            <a class="btn btn-ghost ka-stripe-cta" id="cta-email-story" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link"
+            <a class="btn btn-ghost" id="cta-email-story" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link"
               >Need an invoice link? Email us</a
             >
           </p>
@@ -402,6 +402,7 @@
 
       if (stripeUrl) {
         document.querySelectorAll(".ka-stripe-link, .ka-stripe-cta").forEach(function (el) {
+          if (el.id === "cta-email-hero" || el.id === "cta-email-story") return;
           el.href = stripeUrl;
           if (el.tagName === "A" && el.classList.contains("ka-stripe-link")) {
             el.setAttribute("rel", "noopener");

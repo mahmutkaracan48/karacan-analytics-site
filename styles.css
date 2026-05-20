@@ -201,6 +201,16 @@ header {
   }
 }
 
+@media (max-width: 899px) {
+  .hero-atf {
+    min-height: auto;
+    padding-bottom: 2.5rem;
+  }
+  .hero-teaser-panel {
+    min-height: 280px;
+  }
+}
+
 .hero-atf-copy {
   display: flex;
   flex-direction: column;
