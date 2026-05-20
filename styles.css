@@ -179,10 +179,8 @@ header {
 .hero-atf {
   padding: 1.25rem 0 2rem;
   border-bottom: 1px solid var(--border);
-  min-height: calc(100vh - 4.5rem);
-  min-height: calc(100dvh - 4.5rem);
-  display: flex;
-  align-items: center;
+  min-height: auto;
+  display: block;
 }
 
 .hero-atf-grid {
@@ -203,11 +201,10 @@ header {
 
 @media (max-width: 899px) {
   .hero-atf {
-    min-height: auto;
     padding-bottom: 2.5rem;
   }
   .hero-teaser-panel {
-    min-height: 280px;
+    min-height: auto;
   }
 }
 
@@ -285,7 +282,7 @@ a.ka-vsl-card.ka-stripe-link .ka-stripe-cta {
 
 .hero-teaser-panel {
   height: 100%;
-  min-height: 320px;
+  min-height: auto;
   background: linear-gradient(160deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.98));
   border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: calc(var(--radius) + 2px);
@@ -312,6 +309,20 @@ a.ka-vsl-card.ka-stripe-link .ka-stripe-cta {
   color: var(--text);
 }
 
+.hero-teaser-visual {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.hero-teaser-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 400 / 260;
+}
+
 .hero-teaser-findings {
   margin: 0;
   padding: 0;
@@ -330,6 +341,13 @@ a.ka-vsl-card.ka-stripe-link .ka-stripe-cta {
   filter: blur(4px);
   user-select: none;
   pointer-events: none;
+}
+
+@media (max-width: 899px) {
+  .hero-teaser-findings .blur-line {
+    filter: none;
+    opacity: 0.55;
+  }
 }
 
 .hero-teaser-unlock {
@@ -469,6 +487,11 @@ h1 {
 section {
   padding: 3rem 0;
   border-top: 1px solid var(--border);
+}
+
+section:not(#hero-atf) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
 }
 
 .preview-band {
