@@ -20,110 +20,141 @@
       <div class="wrap nav">
         <a class="logo" href="./">Karacan Analytics</a>
         <nav class="nav-links" aria-label="Primary">
-          <a href="#risk-dashboard">Risk &amp; ROI</a>
+          <a href="#hero-atf">Risk &amp; preview</a>
           <a href="#outcomes">Outcomes</a>
           <a href="#deliverables">Deliverables</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
-          <a class="btn btn-primary" id="cta-nav" href="#pay">Get $497 Snapshot</a>
+          <a class="btn btn-primary ka-stripe-cta" id="cta-nav" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+            >Pay $497 — Stripe</a
+          >
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section id="risk-dashboard" class="risk-dashboard-band" aria-label="Compliance and revenue impact">
-        <div class="wrap risk-dashboard-grid">
-          <div class="risk-alert" role="alert">
-            <p class="risk-alert-eyebrow">ADA Compliance Audit Status</p>
-            <p class="risk-alert-value">HIGH RISK</p>
-            <p class="risk-alert-sub">
-              Illustrative signals from public-page accessibility friction — heuristic review, not legal advice.
-            </p>
-          </div>
-          <div class="roi-card">
-            <p class="roi-label">Estimated Monthly Recoverable Revenue</p>
-            <p class="roi-value" id="roi-estimate">$144,000</p>
-            <p class="roi-note">
-              Modeled recovery if high-friction booking paths are fixed — illustrative, not a guarantee.
-            </p>
-          </div>
-        </div>
-      </section>
+      <!-- Clarity: scroll depth ~34% — hook + blurred teaser + Stripe CTA above the fold -->
+      <section id="hero-atf" class="hero-atf" aria-labelledby="hero-title">
+        <div class="wrap hero-atf-grid">
+          <div class="hero-atf-copy">
+            <a
+              class="risk-alert ka-stripe-link"
+              id="risk-dashboard"
+              href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+              aria-label="ADA compliance risk warning — unlock full snapshot report for 497 dollars"
+            >
+              <p class="risk-alert-eyebrow">ADA Compliance Risk Warning</p>
+              <p class="risk-alert-value">HIGH RISK</p>
+              <p class="risk-alert-sub">
+                Public-page accessibility friction signals on your site — heuristic review, not legal advice. Tap to
+                unlock the full evidence map.
+              </p>
+            </a>
 
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="wrap hero-grid">
-          <div>
-            <span class="eyebrow">Fixed scope. Fast delivery.</span>
-            <h1 id="hero-title">Accessibility Risk Snapshot for teams that need clear next steps.</h1>
-            <p class="lead">
-              We review your public pages and deliver a decision-ready snapshot: prioritized findings, evidence
-              screenshots, and implementation order your developer can execute.
+            <span class="eyebrow">Fixed scope · 12–24 hour delivery</span>
+            <h1 id="hero-title">Accessibility Risk Snapshot — decision-ready in one purchase.</h1>
+            <p class="lead hero-atf-lead">
+              Prioritized findings, blurred preview sample, and developer action order. One-time
+              <strong>$497</strong> via Stripe.
             </p>
+
             <div class="hero-cta">
-              <a class="btn btn-primary" id="cta-hero" href="#pay">Get $497 Snapshot</a>
-              <a class="btn btn-ghost" href="#risk-dashboard">See risk &amp; ROI</a>
-              <a class="text-link" id="cta-email-hero" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20question">Questions? Email us</a>
+              <a
+                class="btn btn-primary ka-stripe-cta"
+                id="cta-hero"
+                href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+                >Pay securely with Stripe — $497</a
+              >
+              <a class="btn btn-ghost" href="#deliverables">See deliverables</a>
+              <a class="text-link" id="cta-email-hero" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20question"
+                >Questions? Email us</a
+              >
             </div>
-            <p class="hero-site-link" id="hero-site-link"></p>
+
+            <a
+              class="roi-card ka-stripe-link hero-atf-roi"
+              href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+              aria-label="Estimated recoverable revenue — checkout to unlock full snapshot"
+            >
+              <p class="roi-label">Estimated Monthly Recoverable Revenue</p>
+              <p class="roi-value" id="roi-estimate">$144,000</p>
+              <p class="roi-note">Illustrative model — full breakdown in the paid Snapshot.</p>
+            </a>
+
             <div class="trust-row" aria-label="Trust signals">
               <span>USD fixed price: $497</span>
               <span>Delivery target: 12–24 hours</span>
               <span>Stripe-secured checkout</span>
             </div>
           </div>
-          <div class="panel" role="region" aria-label="Snapshot summary">
-            <h2>What you get</h2>
-            <p>One fixed-scope deliverable, no vague consulting package.</p>
-            <ul>
-              <li>3 prioritized accessibility risk findings</li>
-              <li>Evidence screenshots and page-level notes</li>
-              <li>Action order your developer can follow</li>
-              <li>Plain-English summary for decision makers</li>
-            </ul>
-            <div class="price-box">
-              <strong>$497</strong>
-              <span>one-time snapshot</span>
+
+          <a
+            class="hero-teaser-link ka-stripe-link"
+            id="hero-teaser"
+            href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+            aria-label="Blurred sample risk report preview — click to checkout on Stripe for 497 dollars"
+          >
+            <div class="hero-teaser-panel">
+              <p class="hero-teaser-badge">Blurred sample · same format you receive by email</p>
+              <h2 class="hero-teaser-title">Sample risk report (preview)</h2>
+              <ul class="hero-teaser-findings" aria-hidden="true">
+                <li class="blur-line">Primary CTA labels drift between landing and booking paths.</li>
+                <li class="blur-line">Keyboard focus skips a step on one revenue-critical form.</li>
+                <li class="blur-line">Key visuals lack text alternatives for assistive users.</li>
+              </ul>
+              <p class="hero-teaser-unlock">
+                <strong>Tap anywhere on this preview</strong> to unlock the full Snapshot — evidence screenshots,
+                priorities, and implementation order.
+              </p>
+              <span class="hero-teaser-cta btn btn-primary">Unlock full report — $497 Stripe checkout</span>
             </div>
-          </div>
+          </a>
         </div>
       </section>
 
       <section id="preview" aria-labelledby="preview-title">
         <div class="wrap">
-          <div class="preview-band">
+          <a
+            class="preview-band ka-stripe-link"
+            href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+            aria-label="Free preview sample — proceed to Stripe checkout"
+          >
             <h2 id="preview-title">Free Preview Sample before checkout</h2>
             <p>
-              First email includes a blurred sample preview page so prospects can see real signal quickly; the full
-              finding list and action order unlock with the fixed <strong>$497 Snapshot</strong>.
+              Outreach emails include a blurred preview page like the one above. The full finding list and action order
+              unlock with the fixed <strong>$497 Snapshot</strong> — click this panel to pay on Stripe.
             </p>
-            <a class="btn btn-primary" href="#pay">Get $497 Snapshot</a>
-          </div>
+            <span class="btn btn-primary ka-stripe-cta">Get $497 Snapshot on Stripe</span>
+          </a>
         </div>
       </section>
 
       <section id="story" aria-labelledby="story-title">
         <div class="wrap">
-          <div class="ka-vsl-card">
+          <a
+            class="ka-vsl-card ka-stripe-link"
+            href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+            aria-label="What you buy — open Stripe checkout for accessibility snapshot"
+          >
             <p class="ka-vsl-eyebrow">Conversion clarity</p>
             <h2 id="story-title">What you buy — and what you skip</h2>
             <p class="section-lead ka-vsl-lead">
-              Emails stay short on purpose. Here is the full picture: fixed <strong>$497</strong> scope, what ships in
-              12–24 hours, refund window before work starts, and the same Stripe checkout you will see after your
-              blurred preview.
+              Fixed <strong>$497</strong> scope, delivery in 12–24 hours, refund window before work starts — same Stripe
+              checkout as the hero button.
             </p>
             <ul class="ka-vsl-checklist" aria-label="Snapshot highlights">
               <li>Three prioritized accessibility risks with evidence screenshots</li>
               <li>Developer-ready action order (not generic “best practices”)</li>
               <li>Plain summary for leadership — technical guidance, not legal advice</li>
             </ul>
-            <p class="muted" style="margin: 0 0 1rem">
-              <a href="#risk-dashboard">Review compliance risk and estimated recoverable revenue</a> at the top of this page.
-            </p>
-            <div class="ka-vsl-cta-row">
-              <a class="btn btn-primary" id="cta-story" href="#pay">Pay securely with Stripe — $497</a>
-              <a class="btn btn-ghost" id="cta-email-story" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link">Need an invoice link?</a>
-            </div>
-          </div>
+            <span class="btn btn-primary ka-stripe-cta" id="cta-story">Pay securely with Stripe — $497</span>
+          </a>
+          <p class="hero-site-link wrap" id="hero-site-link"></p>
+          <p class="wrap muted" style="margin-top: -0.5rem">
+            <a class="btn btn-ghost ka-stripe-cta" id="cta-email-story" href="mailto:contact@karacan-analytics.com?subject=Snapshot%20%E2%80%94%20invoice%20link"
+              >Need an invoice link? Email us</a
+            >
+          </p>
         </div>
       </section>
 
@@ -134,20 +165,22 @@
             You need a fast, bounded assessment before committing to larger remediation or monthly monitoring.
           </p>
           <div class="cards">
-            <article class="card">
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Clear risk visibility</h3>
               <p>Know what is likely hurting trust, conversion, and compliance posture on your public pages.</p>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Actionable handoff</h3>
               <p>Get practical implementation order so your technical team can fix highest-impact items first.</p>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Low-friction start</h3>
               <p>Fixed price and fixed scope so you can move quickly without a long procurement cycle.</p>
-            </article>
+            </a>
           </div>
-          <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
+          <p class="section-cta">
+            <a class="btn btn-primary ka-stripe-cta" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">Get $497 Snapshot</a>
+          </p>
         </div>
       </section>
 
@@ -156,7 +189,7 @@
           <h2 id="deliverables-title">Scope and delivery</h2>
           <p class="section-lead">This is a bounded snapshot, not an open-ended retainer.</p>
           <div class="split-grid">
-            <article class="card">
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Included</h3>
               <ul class="list">
                 <li>3 prioritized findings</li>
@@ -164,8 +197,8 @@
                 <li>Action order and implementation notes</li>
                 <li>Delivery email summary</li>
               </ul>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Not included</h3>
               <ul class="list">
                 <li>Legal opinion or legal representation</li>
@@ -173,9 +206,11 @@
                 <li>Unlimited revisions or custom consulting scope</li>
                 <li>Platform migration work</li>
               </ul>
-            </article>
+            </a>
           </div>
-          <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
+          <p class="section-cta">
+            <a class="btn btn-primary ka-stripe-cta" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">Get $497 Snapshot</a>
+          </p>
         </div>
       </section>
 
@@ -183,40 +218,45 @@
         <div class="wrap">
           <h2 id="process-title">How it works</h2>
           <div class="steps">
-            <article class="step">
+            <a class="step ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <span>Step 1</span>
               <h3>Checkout</h3>
-              <p>Use Stripe checkout or request a payment link by email.</p>
-            </article>
-            <article class="step">
+              <p>Secure Stripe checkout — $497 fixed scope.</p>
+            </a>
+            <a class="step ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <span>Step 2</span>
               <h3>Review</h3>
               <p>We run the snapshot process on your public pages.</p>
-            </article>
-            <article class="step">
+            </a>
+            <a class="step ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <span>Step 3</span>
               <h3>Deliver</h3>
               <p>You receive findings, evidence, and action order in 12–24 hours.</p>
-            </article>
+            </a>
           </div>
           <div class="trust-grid">
-            <article class="card">
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Delivery window</h3>
               <p>Typical delivery is 12–24 hours after payment and scope confirmation.</p>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Refund clarity</h3>
               <p>Full refund if you cancel before we begin the snapshot review. After delivery, refund is not available.</p>
-            </article>
-            <article class="card">
+            </a>
+            <article class="card card-mixed">
               <h3>Policy clarity</h3>
               <p>
                 This is technical risk guidance, not legal advice. See
                 <a href="privacy.html">Privacy</a> and <a href="terms.html">Terms</a>.
               </p>
+              <p class="card-mixed-cta">
+                <a class="btn btn-ghost ka-stripe-cta" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">Checkout — $497</a>
+              </p>
             </article>
           </div>
-          <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
+          <p class="section-cta">
+            <a class="btn btn-primary ka-stripe-cta" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">Get $497 Snapshot</a>
+          </p>
         </div>
       </section>
 
@@ -224,24 +264,26 @@
         <div class="wrap">
           <h2 id="fit-title">Best fit</h2>
           <div class="split-grid">
-            <article class="card">
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Good fit</h3>
               <ul class="list">
                 <li>You need a quick, concrete risk picture</li>
                 <li>You have a dev resource who can implement fixes</li>
                 <li>You want clear scope before larger engagement</li>
               </ul>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Not a fit right now</h3>
               <ul class="list">
                 <li>You need immediate full remediation done-for-you</li>
                 <li>You need legal representation, not technical guidance</li>
                 <li>You want a fully custom enterprise program first</li>
               </ul>
-            </article>
+            </a>
           </div>
-          <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
+          <p class="section-cta">
+            <a class="btn btn-primary ka-stripe-cta" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">Get $497 Snapshot</a>
+          </p>
         </div>
       </section>
 
@@ -249,24 +291,26 @@
         <div class="wrap">
           <h2 id="faq-title">Frequently asked questions</h2>
           <div class="faq-list">
-            <article class="faq-item">
+            <a class="faq-item ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>Is this legal advice?</h3>
               <p>No. This snapshot is a technical risk review and implementation guidance, not legal advice.</p>
-            </article>
-            <article class="faq-item">
+            </a>
+            <a class="faq-item ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>How fast is delivery?</h3>
               <p>Typical delivery is within 12–24 hours after confirmed payment and scope confirmation.</p>
-            </article>
-            <article class="faq-item">
+            </a>
+            <a class="faq-item ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>What happens after the snapshot?</h3>
               <p>If needed, we can scope remediation sprint work and/or monthly monitoring as separate services.</p>
-            </article>
-            <article class="faq-item">
+            </a>
+            <a class="faq-item ka-stripe-link" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">
               <h3>What is the refund policy?</h3>
               <p>Refund is available before we begin the snapshot review. Once the snapshot report is delivered, refund is not available.</p>
-            </article>
+            </a>
           </div>
-          <p class="section-cta"><a class="btn btn-primary" href="#pay">Get $497 Snapshot</a></p>
+          <p class="section-cta">
+            <a class="btn btn-primary ka-stripe-cta" href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01">Get $497 Snapshot</a>
+          </p>
         </div>
       </section>
 
@@ -285,10 +329,10 @@
               <a href="privacy.html">Privacy</a> (payments are processed by Stripe; we do not store card numbers on this site).
             </p>
             <a
-              class="btn btn-primary"
+              class="btn btn-primary ka-stripe-cta"
               id="stripe-pay"
-              href="mailto:contact@karacan-analytics.com?subject=Accessibility%20Risk%20Snapshot%20%E2%80%94%20Payment%20Link"
-              >Get $497 Snapshot</a
+              href="https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01"
+              >Pay securely with Stripe — $497</a
             >
             <p class="micro-copy">Once payment is confirmed, snapshot delivery starts immediately.</p>
           </div>
@@ -334,6 +378,9 @@
       var base = (cfg.siteBaseUrl || "https://karacan-analytics.com").replace(/\/$/, "");
       var email = (cfg.supportEmail || "contact@karacan-analytics.com").trim();
       var mail = "mailto:" + email;
+      var stripeUrl =
+        (cfg.stripeSnapshotUrl || "https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01").trim();
+
       ["cta-email-hero", "cta-email-story", "contact-inline", "contact-inline-pay"].forEach(function (id) {
         var el = document.getElementById(id);
         if (!el) return;
@@ -342,23 +389,23 @@
         else el.href = mail;
         if (el.id === "contact-inline" || el.id === "contact-inline-pay") el.textContent = email;
       });
+
       var hsl = document.getElementById("hero-site-link");
       if (hsl) {
         hsl.innerHTML =
-          'Prefer reading on the site? <a href="' +
+          'Same offer on <a href="' +
           base +
-          '/#risk-dashboard">' +
+          '/#hero-atf">' +
           base.replace(/^https:\/\//, "") +
-          "</a> — same offer, same Stripe checkout.";
+          "</a> — Clarity-optimized hero + Stripe checkout.";
       }
-      var stripeUrl = cfg.stripeSnapshotUrl || "";
+
       if (stripeUrl) {
-        ["stripe-pay", "cta-hero", "cta-nav", "cta-story"].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (!el) return;
+        document.querySelectorAll(".ka-stripe-link, .ka-stripe-cta").forEach(function (el) {
           el.href = stripeUrl;
-          if (id === "stripe-pay") el.textContent = "Pay securely with Stripe — $497";
-          if (id === "cta-story") el.textContent = "Pay securely with Stripe — $497";
+          if (el.tagName === "A" && el.classList.contains("ka-stripe-link")) {
+            el.setAttribute("rel", "noopener");
+          }
         });
       }
     </script>

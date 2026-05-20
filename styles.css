@@ -175,7 +175,172 @@ header {
   color: var(--text);
 }
 
-/* Hero */
+/* Above-the-fold hero (Clarity scroll-depth fix) */
+.hero-atf {
+  padding: 1.25rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  min-height: calc(100vh - 4.5rem);
+  min-height: calc(100dvh - 4.5rem);
+  display: flex;
+  align-items: center;
+}
+
+.hero-atf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .hero-atf-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+.hero-atf-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.hero-atf-lead {
+  margin-bottom: 0.5rem !important;
+}
+
+.hero-atf-roi {
+  margin-top: 0.35rem;
+}
+
+/* Clickable blocks → Stripe (dead-click repair) */
+a.ka-stripe-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+a.ka-stripe-link:hover {
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-2px);
+}
+
+a.risk-alert.ka-stripe-link:hover,
+a.roi-card.ka-stripe-link:hover {
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.35);
+}
+
+a.card.ka-stripe-link:hover,
+a.step.ka-stripe-link:hover,
+a.faq-item.ka-stripe-link:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 12px 40px rgba(14, 165, 233, 0.12);
+}
+
+a.preview-band.ka-stripe-link {
+  display: block;
+}
+
+a.preview-band.ka-stripe-link:hover .btn-primary {
+  transform: translateY(-1px);
+}
+
+a.ka-vsl-card.ka-stripe-link {
+  display: block;
+}
+
+a.ka-vsl-card.ka-stripe-link .ka-stripe-cta {
+  pointer-events: none;
+}
+
+.card-mixed {
+  display: block;
+}
+
+.card-mixed a[href="privacy.html"],
+.card-mixed a[href="terms.html"] {
+  position: relative;
+  z-index: 2;
+}
+
+/* Blurred report teaser (entire panel links to Stripe) */
+.hero-teaser-link {
+  height: 100%;
+}
+
+.hero-teaser-panel {
+  height: 100%;
+  min-height: 320px;
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.98));
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: calc(var(--radius) + 2px);
+  padding: 1.5rem 1.65rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-teaser-badge {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero-teaser-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.hero-teaser-findings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+}
+
+.hero-teaser-findings .blur-line {
+  margin-bottom: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+  filter: blur(4px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-teaser-unlock {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.hero-teaser-cta {
+  align-self: flex-start;
+  margin-top: auto;
+  pointer-events: none;
+}
+
+a.hero-teaser-link:hover .hero-teaser-panel {
+  border-color: rgba(56, 189, 248, 0.65);
+  box-shadow: 0 28px 90px rgba(14, 165, 233, 0.2);
+}
+
+/* Legacy hero (unused) */
 .hero {
   padding: 4.5rem 0 3.5rem;
 }
@@ -394,7 +559,8 @@ section h2 {
   }
 }
 
-.step {
+.step,
+a.step {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -440,7 +606,8 @@ section h2 {
   gap: 0.9rem;
 }
 
-.faq-item {
+.faq-item,
+a.faq-item {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: rgba(18, 27, 46, 0.7);
@@ -553,24 +720,8 @@ footer address {
   padding-left: 1.25rem;
 }
 
-/* Top-of-page risk + ROI (replaces VSL video band) */
-.risk-dashboard-band {
-  padding: 2rem 0 1.75rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  background: radial-gradient(1200px 420px at 50% -20%, rgba(15, 23, 42, 0.6), transparent);
-}
-.risk-dashboard-grid {
-  display: grid;
-  gap: 1rem;
-  max-width: 920px;
-}
-@media (min-width: 720px) {
-  .risk-dashboard-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-  }
-}
-.risk-alert {
+.risk-alert,
+a.risk-alert {
   background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 45%, #b91c1c 100%);
   border: 1px solid rgba(252, 165, 165, 0.55);
   border-radius: calc(var(--radius) + 2px);
@@ -600,7 +751,8 @@ footer address {
   color: #fee2e2;
   opacity: 0.95;
 }
-.roi-card {
+.roi-card,
+a.roi-card {
   background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
   border: 1px solid rgba(134, 239, 172, 0.55);
   border-radius: calc(var(--radius) + 2px);
