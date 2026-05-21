@@ -1,6 +1,12 @@
 {
   "cleanUrls": false,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/previews/:path*",
+      "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/previews/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/styles.css",
