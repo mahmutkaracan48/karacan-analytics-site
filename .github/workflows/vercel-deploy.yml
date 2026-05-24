@@ -2,7 +2,7 @@
 # Setup (one time):
 #   1. Vercel → Project karacan-analytics-site → Settings → Deploy Hooks → Create Hook (Production)
 #   2. GitHub → repo Settings → Secrets → Actions → New: VERCEL_DEPLOY_HOOK = paste hook URL
-# Alternative: Vercel → Settings → Git → Connect mahmutkaracan48/karacan-analytics-site (creates webhook automatically)
+# Note: GitHub does not allow `secrets` in job/step `if:` — pass via env and check in shell.
 
 name: Deploy Vercel Production
 
@@ -16,15 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Vercel Deploy Hook
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK != '' }}
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "::warning::VERCEL_DEPLOY_HOOK secret is missing."
+            echo "Add it from Vercel → Settings → Deploy Hooks, or connect Git in Vercel project settings."
+            exit 0
+          fi
           echo "Calling Vercel deploy hook..."
-          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+          curl -fsS -X POST "$VERCEL_DEPLOY_HOOK"
           echo "Deploy hook accepted (build started on Vercel)."
-
-      - name: No deploy hook configured
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK == '' }}
-        run: |
-          echo "::warning::VERCEL_DEPLOY_HOOK secret is missing."
-          echo "Add it from Vercel → Settings → Deploy Hooks, or connect Git in Vercel project settings."
-          exit 0
