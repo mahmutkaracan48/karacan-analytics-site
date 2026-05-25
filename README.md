@@ -39,3 +39,5 @@ Boş bırakılırsa sayfada yer tutucu metin görünür.
 Varsayılan: **contact@karacan-analytics.com** — tüm `mailto:` ve footer ile uyumlu tut.
 
 Manuel Git: [DEPLOY_GITHUB.md](./DEPLOY_GITHUB.md)
+
+<!-- deploy bump: 2026-05-25 13:33 UTC -->
