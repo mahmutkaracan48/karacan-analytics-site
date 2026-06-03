@@ -4,8 +4,8 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/previews/:slug",
-      "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/previews/:slug"
+      "source": "/previews/:path*",
+      "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/previews/:path*"
     }
   ],
   "headers": [
