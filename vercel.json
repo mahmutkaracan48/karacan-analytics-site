@@ -6,6 +6,10 @@
     {
       "source": "/previews/:path*",
       "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/previews/:path*"
+    },
+    {
+      "source": "/reports/:path*",
+      "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/reports/:path*"
     }
   ],
   "headers": [
@@ -23,6 +27,12 @@
     },
     {
       "source": "/previews/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/reports/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]

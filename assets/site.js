@@ -49,11 +49,5 @@
     })(window, document, "clarity", "script", "wsxqx462hv");
   }
 
-  if ("requestIdleCallback" in window) {
-    requestIdleCallback(loadClarity, { timeout: 4000 });
-  } else {
-    window.addEventListener("load", function () {
-      setTimeout(loadClarity, 2000);
-    });
-  }
+  loadClarity();
 })();

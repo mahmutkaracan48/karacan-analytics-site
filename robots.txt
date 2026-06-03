@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /unsubscribe.html
 
 Sitemap: https://karacan-analytics.com/sitemap.xml
