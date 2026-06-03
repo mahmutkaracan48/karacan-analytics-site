@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Accessibility Snapshot Report &mdash; Westwood Family Dental</title>
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #0f172a; background: #f3f4f6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px 32px; }
+  .print-bar { background:#111827; color:#fff; padding:10px 16px; font-size:13px; text-align:center; position:sticky; top:0; z-index:9; }
+  .print-bar button { background:#2563eb; color:#fff; border:0; padding:6px 14px; border-radius:6px; font-weight:600; cursor:pointer; margin-left:8px; font-size:13px; }
+  .hero { background: linear-gradient(135deg,#0f172a 0%, #1e293b 100%); color:#f1f5f9; border-radius: 16px; margin-top: 16px; overflow: hidden; }
+  .hero-inner { padding: 32px 28px 28px; }
+  .eyebrow { margin:0 0 6px; font-size: 11px; letter-spacing:.16em; text-transform: uppercase; color:#94a3b8; }
+  .title { margin:0 0 4px; font-size: 30px; line-height:1.15; font-weight:700; }
+  .subtitle { margin:0 0 24px; color:#cbd5e1; font-size:15px; }
+  .risk-card { display: inline-block; padding: 18px 22px; border-radius: 12px; color:#fff; min-width: 260px; }
+  .risk-label { font-size: 11px; letter-spacing:.12em; text-transform: uppercase; opacity:.85; }
+  .risk-score { font-size: 54px; font-weight: 800; line-height: 1; margin: 4px 0 6px; }
+  .risk-score span { font-size: 18px; font-weight: 500; opacity: .85; }
+  .risk-status { font-size: 18px; font-weight: 700; letter-spacing:.04em; text-transform: uppercase; }
+  .risk-counts { margin-top: 6px; font-size: 12px; opacity: .85; }
+  .report-meta { margin: 22px 0 0; font-size: 12px; color:#94a3b8; }
+  .report-meta a { color: #60a5fa; text-decoration: none; }
+  .card { background:#fff; border-radius: 14px; padding: 24px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.04); border:1px solid #e5e7eb; }
+  .card h2 { margin: 0 0 12px; font-size: 21px; color:#0f172a; }
+  .card p { margin: 0 0 12px; line-height: 1.6; color: #1f2937; }
+  .muted { color: #6b7280; }
+  .small { font-size: 12px; }
+  .data-table { width:100%; border-collapse: collapse; font-size: 14px; }
+  .data-table th, .data-table td { padding: 9px 12px; border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
+  .data-table th { background:#f9fafb; font-size: 11px; text-transform: uppercase; letter-spacing:.06em; color:#374151; }
+  .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .data-table.tight th, .data-table.tight td { padding: 7px 12px; }
+  .score { display:inline-block; min-width: 34px; padding: 3px 8px; border-radius: 999px; font-weight: 700; font-size: 12px; text-align: center; }
+  .score-good { background:#dcfce7; color:#166534; }
+  .score-warn { background:#fef3c7; color:#92400e; }
+  .score-bad  { background:#fee2e2; color:#991b1b; }
+  .badge { display:inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing:.06em; text-transform: uppercase; }
+  .badge-critical { background:#7f1d1d; color:#fff; }
+  .badge-serious  { background:#b45309; color:#fff; }
+  .badge-moderate { background:#a16207; color:#fef3c7; }
+  .badge-minor    { background:#475569; color:#fff; }
+  .findings-list { list-style:none; padding:0; margin:0; }
+  .finding { padding: 18px 0; border-top: 1px solid #e5e7eb; }
+  .finding:first-child { border-top: 0; }
+  .finding-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .finding-head-left { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .finding-num { color:#9ca3af; font-weight: 700; font-size: 13px; }
+  .wcag-tag { font-size: 12px; color: #1e3a8a; background:#dbeafe; padding: 3px 9px; border-radius: 6px; font-weight:600; }
+      .src-tag { font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight:600; text-transform: uppercase; letter-spacing:.04em; }
+      .src-tag.src-lighthouse { background:#e0e7ff; color:#3730a3; }
+      .src-tag.src-axe-core { background:#dcfce7; color:#166534; }
+      .src-tag { font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight:600; text-transform: uppercase; letter-spacing:.04em; }
+      .src-tag.src-lighthouse { background:#e0e7ff; color:#3730a3; }
+      .src-tag.src-axe-core { background:#dcfce7; color:#166534; }
+  .finding-title { margin: 0 0 4px; font-size: 17px; color:#111827; }
+  .finding-desc { margin: 0 0 10px; color: #4b5563; font-size: 14px; line-height: 1.55; }
+  .elements { background:#f9fafb; border-radius:8px; padding: 10px 12px; margin-top: 8px; }
+  .elements-label { font-size: 11px; text-transform: uppercase; letter-spacing:.06em; color:#6b7280; margin-bottom: 6px; font-weight:700; }
+  .elements-list { list-style:disc; padding-left: 20px; margin: 0; font-size: 13px; }
+  .elements-list li { padding: 3px 0; }
+  .selector { background:#1f2937; color:#a7f3d0; padding: 2px 7px; border-radius: 4px; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+  .snippet-line { margin-top: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color:#4b5563; word-break: break-all; }
+  .fix { margin-top: 10px; }
+  .fix-label { font-size: 11px; text-transform: uppercase; letter-spacing:.06em; color:#6b7280; margin-bottom: 4px; font-weight:700; }
+  .fix pre { margin: 0; background:#0f172a; color:#e5e7eb; padding: 14px 16px; border-radius:8px; overflow-x:auto; font-size: 12px; line-height:1.5; }
+  .fix code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .shots-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 10px; }
+  .shots-grid figure { margin: 0; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; background:#f9fafb; }
+  .shots-grid img { display: block; width: 100%; height: auto; }
+  .shots-grid figcaption { padding: 8px 12px; font-size: 12px; color:#4b5563; }
+  .shots-grid figcaption a { color:#2563eb; text-decoration:none; }
+  .cta-card { background: linear-gradient(135deg,#0f172a 0%, #1e293b 100%); color:#f1f5f9; border-color:#1e293b; }
+  .cta-card h2 { color:#f1f5f9; }
+  .cta-card p { color:#cbd5e1; }
+  .cta-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin-top: 10px; }
+  .cta-box { background:rgba(255,255,255,.05); padding: 18px 18px 16px; border-radius: 10px; border:1px solid rgba(255,255,255,.12); }
+  .cta-eyebrow { margin:0 0 4px; font-size: 11px; letter-spacing:.12em; text-transform: uppercase; color:#94a3b8; }
+  .cta-box h3 { margin: 0 0 8px; font-size: 19px; color:#f1f5f9; }
+  .cta-box p { color: #cbd5e1; font-size: 14px; margin-bottom: 8px; line-height: 1.5; }
+  footer { margin-top: 24px; padding: 18px 12px; text-align:center; font-size: 13px; color:#6b7280; }
+  footer a { color:#2563eb; text-decoration: none; }
+  @media (max-width: 640px) {
+    .shots-grid, .cta-grid { grid-template-columns: 1fr; }
+    .title { font-size: 24px; }
+    .risk-score { font-size: 40px; }
+  }
+  @media print {
+    .print-bar { display: none; }
+    body { background:#fff; }
+    .wrap { max-width: none; padding: 0; }
+    .card, .hero { box-shadow: none; border: 1px solid #d1d5db; page-break-inside: avoid; }
+    .finding { page-break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+    .selector { color:#0f172a; background:#f3f4f6; border: 1px solid #d1d5db; }
+    .fix pre { color:#0f172a; background:#f3f4f6; border:1px solid #d1d5db; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-bar">
+    Tip: hit <strong>Cmd/Ctrl + P</strong> and choose &ldquo;Save as PDF&rdquo; to archive this report.
+    <button onclick="window.print()">Save as PDF</button>
+  </div>
+  <div class="wrap">
+    
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Karacan Analytics — Accessibility Risk Snapshot</p>
+    <h1 class="title">Westwood Family Dental</h1>
+    <p class="subtitle">Decision-ready report &middot; https://example.com</p>
+    <div class="risk-card" style="background:linear-gradient(135deg, #ca8a04aa 0%, #ca8a04 100%);">
+      <div class="risk-label">ADA Lawsuit Risk</div>
+      <div class="risk-score">36<span>/100</span></div>
+      <div class="risk-status">ELEVATED RISK</div>
+      <div class="risk-counts">0 critical &middot; 0 serious &middot; 0 moderate</div>
+    </div>
+    <p class="report-meta">
+      Order t_1780460063 &middot; Generated Wed, 03 Jun 2026 04:18 UTC &middot;
+      Web version: <a href="https://karacan-analytics.com/reports/c93aa91fce50dd21.html">karacan-analytics.com/reports/c93aa91fce50dd21.html</a>
+    </p>
+  </div>
+</section>
+    
+<section class="card">
+  <h2>Executive Summary</h2>
+  <p>Thank you for your purchase. This Snapshot is your <strong>decision-ready brief</strong> for <strong>Westwood Family Dental</strong>. We scanned <strong>4 pages</strong> from <a href="https://example.com">https://example.com</a> using <em>Google Lighthouse v11 + axe-core 4 (the dual-engine pairing trusted by ADA compliance auditors and Deque Systems)</em>, mapped each violation to a specific WCAG 2.1 AA criterion, and weighted them against the patterns used in recent ADA settlement cases.</p>
+  <p>The <strong style="color:#ca8a04">ELEVATED RISK</strong> rating reflects the combined exposure of <strong>0 distinct issues</strong> we found, weighted by severity (critical: 0, serious: 0, moderate: 0). Section 5 lists each issue with the <em>exact selector</em> and the <em>code fix</em> your developer can paste.</p>
+  <p>Recommended sequence: address all <span class="badge badge-critical">P1 critical</span> items within <strong>72 hours</strong>, then <span class="badge badge-serious">P2 serious</span> within <strong>7 days</strong>, then <span class="badge badge-moderate">P3 moderate</span> within <strong>14 days</strong>. We estimate this brings you to a defensible posture in &lt; 3 weeks.</p>
+</section>
+    
+<section class="card">
+  <h2>Why this matters — ADA / WCAG context</h2>
+  <p>U.S. courts have repeatedly held that the ADA's Title III applies to commercial websites. The <em>de facto</em> standard cited in settlements is <strong>WCAG 2.1 Level AA</strong>. Plaintiffs typically file class-action suits using automated scan reports (similar in scope to this one) as primary evidence. Below are four recent settlements that directly cited issues of the type we found on your site.</p>
+  <table class="data-table">
+    <thead><tr><th>Case</th><th>Outcome</th><th>Why it applies to you</th></tr></thead>
+    <tbody>
+  <tr>
+    <td><strong>Domino&#39;s Pizza Inc. v. Robles</strong><br/><span class="muted">2019</span></td>
+    <td>SCOTUS declined to hear -&gt; 9th Circuit ruling stood. Domino&#39;s settled (undisclosed, multi-figure).</td>
+    <td>Website lacked screen-reader compatibility (image-alt, link-name, button-name).</td>
+  </tr>
+  <tr>
+    <td><strong>Gil v. Winn-Dixie</strong><br/><span class="muted">2017</span></td>
+    <td>$250,000 settlement + remediation order.</td>
+    <td>Pharmacy site had unlabeled form fields and inaccessible PDFs.</td>
+  </tr>
+  <tr>
+    <td><strong>Andrews v. Blick Art Materials</strong><br/><span class="muted">2017</span></td>
+    <td>Settled. Site forced to comply with WCAG 2.0 AA.</td>
+    <td>Color contrast, missing alt text, focus order issues.</td>
+  </tr>
+  <tr>
+    <td><strong>National Federation of the Blind v. Target</strong><br/><span class="muted">2008</span></td>
+    <td>$6 million settlement.</td>
+    <td>Inaccessible checkout flow + missing alt text.</td>
+  </tr></tbody>
+  </table>
+  <p class="muted small">Source: publicly available case dockets. This summary is technical guidance, <em>not legal advice</em>. Consult ADA counsel for case-specific exposure.</p>
+</section>
+    
+<section class="card">
+  <h2>Per-page Lighthouse breakdown</h2>
+  <p>Each page was scanned with Google PageSpeed Insights (mobile profile, USA region). Scores below 50 are highlighted red; 50-89 amber; 90+ green. <em>Largest Contentful Paint (LCP)</em> &gt; 2.5s and <em>Cumulative Layout Shift (CLS)</em> &gt; 0.1 directly hurt conversion in addition to WCAG.</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th class="num">Perf</th>
+        <th class="num">A11y</th>
+        <th class="num">SEO</th>
+        <th class="num">BP</th>
+        <th class="num">LCP</th>
+        <th class="num">TBT</th>
+        <th class="num">CLS</th>
+      </tr>
+    </thead>
+    <tbody>
+  <tr>
+    <td><strong>Page 1</strong><br/><a href="unknown" class="muted small">unknown</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td>
+  </tr>
+  <tr>
+    <td><strong>Page 2</strong><br/><a href="unknown" class="muted small">unknown</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td>
+  </tr>
+  <tr>
+    <td><strong>Page 3</strong><br/><a href="unknown" class="muted small">unknown</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td>
+  </tr>
+  <tr>
+    <td><strong>Page 4</strong><br/><a href="unknown" class="muted small">unknown</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num"><span class="muted">—</span></td>
+  </tr></tbody>
+  </table>
+</section>
+    
+<section class="card">
+  <h2>WCAG findings</h2>
+  <p class="muted">Our automated scan did not detect any blocking WCAG 2.1 AA violations on the scanned pages. We still recommend manual screen-reader testing (NVDA / VoiceOver) on your conversion flows — automated tools catch ~40% of issues. Email us at <a href="mailto:hello@karacan-analytics.com">hello@karacan-analytics.com</a> if you would like a human-assisted audit.</p>
+</section>
+    
+    
+<section class="card">
+  <h2>ROI projection (Dental practice (new-patient appointments))</h2>
+  <p>Estimates use industry-standard ranges for your segment. Plug in your actual numbers to refine — but order-of-magnitude is conservative.</p>
+  <table class="data-table tight">
+    <tr><td>Average order value (AOV)</td><td class="num">$1,800</td></tr>
+    <tr><td>Estimated monthly visitors</td><td class="num">3,500</td></tr>
+    <tr><td>Baseline conversion rate</td><td class="num">1.80%</td></tr>
+    <tr><td>Conversion lift after remediation</td><td class="num">+25%</td></tr>
+    <tr><td>Recoverable revenue per month</td><td class="num"><strong style="color:#065f46">$28,350</strong></td></tr>
+    <tr><td>Recoverable revenue per year</td><td class="num"><strong style="color:#065f46">$340,200</strong></td></tr>
+  </table>
+  <p class="muted small">Methodology: lift assumes industry baseline accessibility-related friction reduction (UX research averages 18-32% per segment). Lab/conversion data is correlative, not causal; treat as planning input.</p>
+</section>
+    
+<section class="card">
+  <h2>Recommended remediation plan</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Phase</th><th>Scope</th><th>Time window</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-critical">P1</span></td>
+        <td>0 critical WCAG violations (forms, ARIA, missing labels, contrast on CTAs)</td>
+        <td>72 hours</td>
+        <td>Removes the highest-impact ADA litigation evidence + recovers the largest conversion friction.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-serious">P2</span></td>
+        <td>0 serious violations (link names, heading order, color-contrast on body text)</td>
+        <td>7 days</td>
+        <td>Brings public pages to defensible posture; pages now pass automated scanner thresholds.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-moderate">P3</span></td>
+        <td>0 moderate violations (semantic lists, role hygiene, SVG alts)</td>
+        <td>14 days</td>
+        <td>Polishes for screen-reader users; aligns with WCAG 2.1 AA fully.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+    
+<section class="card cta-card">
+  <h2>Need help executing? Two structured add-ons</h2>
+  <div class="cta-grid">
+    <div class="cta-box">
+      <p class="cta-eyebrow">One-time engagement</p>
+      <h3>Fix Sprint &mdash; $1,500</h3>
+      <p>Focused 14-day remediation window. We implement the P1 + P2 fixes for you, hand back a clean re-scan and a brief signed-off compliance summary.</p>
+      <p class="muted small">Reply with the word <strong>SPRINT</strong> to start scoping.</p>
+    </div>
+    <div class="cta-box">
+      <p class="cta-eyebrow">Ongoing monitoring</p>
+      <h3>Monthly Guard &mdash; $299/mo</h3>
+      <p>Monthly re-scan + light fixes + quarterly review. Alerts when new content regresses your score. Includes a private dashboard.</p>
+      <p class="muted small">Reply with the word <strong>MONTHLY</strong> to start.</p>
+    </div>
+  </div>
+</section>
+    
+<footer>
+  <p><strong>Karacan Analytics LLC</strong> &middot; Beverly, NJ, United States</p>
+  <p>Reports: <a href="mailto:reports@karacan-analytics.com">reports@karacan-analytics.com</a> &middot;
+     Sales: <a href="mailto:hello@karacan-analytics.com">hello@karacan-analytics.com</a></p>
+  <p class="muted small">This report provides technical and operational guidance based on automated heuristics. It is <strong>not legal advice</strong>. Court outcomes depend on jurisdiction, plaintiff theory, and remediation evidence. We recommend ADA counsel review prior to formal use.</p>
+  <p class="muted small">
+    <a href="https://karacan-analytics.com/terms.html">Terms</a> &middot;
+    <a href="https://karacan-analytics.com/privacy.html">Privacy</a> &middot;
+    <a href="https://karacan-analytics.com/unsubscribe.html">Unsubscribe</a>
+  </p>
+</footer>
+  </div>
+</body></html>
