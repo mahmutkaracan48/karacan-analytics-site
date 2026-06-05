@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Accessibility Snapshot Report &mdash; Synth Dental Test</title>
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #0f172a; background: #f3f4f6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px 32px; }
+  .print-bar { background:#111827; color:#fff; padding:10px 16px; font-size:13px; text-align:center; position:sticky; top:0; z-index:9; }
+  .print-bar button { background:#2563eb; color:#fff; border:0; padding:6px 14px; border-radius:6px; font-weight:600; cursor:pointer; margin-left:8px; font-size:13px; }
+  .hero { background: linear-gradient(135deg,#0f172a 0%, #1e293b 100%); color:#f1f5f9; border-radius: 16px; margin-top: 16px; overflow: hidden; }
+  .hero-inner { padding: 32px 28px 28px; }
+  .eyebrow { margin:0 0 6px; font-size: 11px; letter-spacing:.16em; text-transform: uppercase; color:#94a3b8; }
+  .title { margin:0 0 4px; font-size: 30px; line-height:1.15; font-weight:700; }
+  .subtitle { margin:0 0 24px; color:#cbd5e1; font-size:15px; }
+  .risk-card { display: inline-block; padding: 18px 22px; border-radius: 12px; color:#fff; min-width: 260px; }
+  .risk-label { font-size: 11px; letter-spacing:.12em; text-transform: uppercase; opacity:.85; }
+  .risk-score { font-size: 54px; font-weight: 800; line-height: 1; margin: 4px 0 6px; }
+  .risk-score span { font-size: 18px; font-weight: 500; opacity: .85; }
+  .risk-status { font-size: 18px; font-weight: 700; letter-spacing:.04em; text-transform: uppercase; }
+  .risk-counts { margin-top: 6px; font-size: 12px; opacity: .85; }
+  .report-meta { margin: 22px 0 0; font-size: 12px; color:#94a3b8; }
+  .report-meta a { color: #60a5fa; text-decoration: none; }
+  .card { background:#fff; border-radius: 14px; padding: 24px; margin-top: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.04); border:1px solid #e5e7eb; }
+  .card h2 { margin: 0 0 12px; font-size: 21px; color:#0f172a; }
+  .card p { margin: 0 0 12px; line-height: 1.6; color: #1f2937; }
+  .muted { color: #6b7280; }
+  .small { font-size: 12px; }
+  .data-table { width:100%; border-collapse: collapse; font-size: 14px; }
+  .data-table th, .data-table td { padding: 9px 12px; border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
+  .data-table th { background:#f9fafb; font-size: 11px; text-transform: uppercase; letter-spacing:.06em; color:#374151; }
+  .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .data-table.tight th, .data-table.tight td { padding: 7px 12px; }
+  .score { display:inline-block; min-width: 34px; padding: 3px 8px; border-radius: 999px; font-weight: 700; font-size: 12px; text-align: center; }
+  .score-good { background:#dcfce7; color:#166534; }
+  .score-warn { background:#fef3c7; color:#92400e; }
+  .score-bad  { background:#fee2e2; color:#991b1b; }
+  .badge { display:inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing:.06em; text-transform: uppercase; }
+  .badge-critical { background:#7f1d1d; color:#fff; }
+  .badge-serious  { background:#b45309; color:#fff; }
+  .badge-moderate { background:#a16207; color:#fef3c7; }
+  .badge-minor    { background:#475569; color:#fff; }
+  .findings-list { list-style:none; padding:0; margin:0; }
+  .finding { padding: 18px 0; border-top: 1px solid #e5e7eb; }
+  .finding:first-child { border-top: 0; }
+  .finding-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .finding-head-left { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .finding-num { color:#9ca3af; font-weight: 700; font-size: 13px; }
+  .wcag-tag { font-size: 12px; color: #1e3a8a; background:#dbeafe; padding: 3px 9px; border-radius: 6px; font-weight:600; }
+  .finding-title { margin: 0 0 4px; font-size: 17px; color:#111827; }
+  .finding-desc { margin: 0 0 10px; color: #4b5563; font-size: 14px; line-height: 1.55; }
+  .elements { background:#f9fafb; border-radius:8px; padding: 10px 12px; margin-top: 8px; }
+  .elements-label { font-size: 11px; text-transform: uppercase; letter-spacing:.06em; color:#6b7280; margin-bottom: 6px; font-weight:700; }
+  .elements-list { list-style:disc; padding-left: 20px; margin: 0; font-size: 13px; }
+  .elements-list li { padding: 3px 0; }
+  .selector { background:#1f2937; color:#a7f3d0; padding: 2px 7px; border-radius: 4px; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+  .snippet-line { margin-top: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color:#4b5563; word-break: break-all; }
+  .fix { margin-top: 10px; }
+  .fix-label { font-size: 11px; text-transform: uppercase; letter-spacing:.06em; color:#6b7280; margin-bottom: 4px; font-weight:700; }
+  .fix pre { margin: 0; background:#0f172a; color:#e5e7eb; padding: 14px 16px; border-radius:8px; overflow-x:auto; font-size: 12px; line-height:1.5; }
+  .fix code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .shots-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 10px; }
+  .shots-grid figure { margin: 0; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; background:#f9fafb; }
+  .shots-grid img { display: block; width: 100%; height: auto; }
+  .shots-grid figcaption { padding: 8px 12px; font-size: 12px; color:#4b5563; }
+  .shots-grid figcaption a { color:#2563eb; text-decoration:none; }
+  .cta-card { background: linear-gradient(135deg,#0f172a 0%, #1e293b 100%); color:#f1f5f9; border-color:#1e293b; }
+  .cta-card h2 { color:#f1f5f9; }
+  .cta-card p { color:#cbd5e1; }
+  .cta-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin-top: 10px; }
+  .cta-box { background:rgba(255,255,255,.05); padding: 18px 18px 16px; border-radius: 10px; border:1px solid rgba(255,255,255,.12); }
+  .cta-eyebrow { margin:0 0 4px; font-size: 11px; letter-spacing:.12em; text-transform: uppercase; color:#94a3b8; }
+  .cta-box h3 { margin: 0 0 8px; font-size: 19px; color:#f1f5f9; }
+  .cta-box p { color: #cbd5e1; font-size: 14px; margin-bottom: 8px; line-height: 1.5; }
+  footer { margin-top: 24px; padding: 18px 12px; text-align:center; font-size: 13px; color:#6b7280; }
+  footer a { color:#2563eb; text-decoration: none; }
+  @media (max-width: 640px) {
+    .shots-grid, .cta-grid { grid-template-columns: 1fr; }
+    .title { font-size: 24px; }
+    .risk-score { font-size: 40px; }
+  }
+  @media print {
+    .print-bar { display: none; }
+    body { background:#fff; }
+    .wrap { max-width: none; padding: 0; }
+    .card, .hero { box-shadow: none; border: 1px solid #d1d5db; page-break-inside: avoid; }
+    .finding { page-break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+    .selector { color:#0f172a; background:#f3f4f6; border: 1px solid #d1d5db; }
+    .fix pre { color:#0f172a; background:#f3f4f6; border:1px solid #d1d5db; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-bar">
+    Tip: hit <strong>Cmd/Ctrl + P</strong> and choose &ldquo;Save as PDF&rdquo; to archive this report.
+    <button onclick="window.print()">Save as PDF</button>
+  </div>
+  <div class="wrap">
+    
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Karacan Analytics — Accessibility Risk Snapshot</p>
+    <h1 class="title">Synth Dental Test</h1>
+    <p class="subtitle">Decision-ready report &middot; https://www.kiddodental.com</p>
+    <div class="risk-card" style="background:linear-gradient(135deg, #dc2626aa 0%, #dc2626 100%);">
+      <div class="risk-label">ADA Lawsuit Risk</div>
+      <div class="risk-score">100<span>/100</span></div>
+      <div class="risk-status">HIGH RISK</div>
+      <div class="risk-counts">2 critical &middot; 6 serious &middot; 8 moderate</div>
+    </div>
+    <p class="report-meta">
+      Order h_1780636097 &middot; Generated Fri, 05 Jun 2026 05:11 UTC &middot;
+      Web version: <a href="https://karacan-analytics.com/reports/8296c387864ba851.html">karacan-analytics.com/reports/8296c387864ba851.html</a>
+    </p>
+  </div>
+</section>
+    
+<section class="card">
+  <h2>Executive Summary</h2>
+  <p>Thank you for your purchase. This Snapshot is your <strong>decision-ready brief</strong> for <strong>Synth Dental Test</strong>. We scanned <strong>4 pages</strong> from <a href="https://www.kiddodental.com">https://www.kiddodental.com</a> using <em>Google Lighthouse v11 (the same engine used in ADA compliance audits)</em>, mapped each violation to a specific WCAG 2.1 AA criterion, and weighted them against the patterns used in recent ADA settlement cases.</p>
+  <p>The <strong style="color:#dc2626">HIGH RISK</strong> rating reflects the combined exposure of <strong>16 distinct issues</strong> we found, weighted by severity (critical: 2, serious: 6, moderate: 8). Section 5 lists each issue with the <em>exact selector</em> and the <em>code fix</em> your developer can paste.</p>
+  <p>Recommended sequence: address all <span class="badge badge-critical">P1 critical</span> items within <strong>72 hours</strong>, then <span class="badge badge-serious">P2 serious</span> within <strong>7 days</strong>, then <span class="badge badge-moderate">P3 moderate</span> within <strong>14 days</strong>. We estimate this brings you to a defensible posture in &lt; 3 weeks.</p>
+</section>
+    
+<section class="card">
+  <h2>Why this matters — ADA / WCAG context</h2>
+  <p>U.S. courts have repeatedly held that the ADA's Title III applies to commercial websites. The <em>de facto</em> standard cited in settlements is <strong>WCAG 2.1 Level AA</strong>. Plaintiffs typically file class-action suits using automated scan reports (similar in scope to this one) as primary evidence. Below are four recent settlements that directly cited issues of the type we found on your site.</p>
+  <table class="data-table">
+    <thead><tr><th>Case</th><th>Outcome</th><th>Why it applies to you</th></tr></thead>
+    <tbody>
+  <tr>
+    <td><strong>Domino&#39;s Pizza Inc. v. Robles</strong><br/><span class="muted">2019</span></td>
+    <td>SCOTUS declined to hear -&gt; 9th Circuit ruling stood. Domino&#39;s settled (undisclosed, multi-figure).</td>
+    <td>Website lacked screen-reader compatibility (image-alt, link-name, button-name).</td>
+  </tr>
+  <tr>
+    <td><strong>Gil v. Winn-Dixie</strong><br/><span class="muted">2017</span></td>
+    <td>$250,000 settlement + remediation order.</td>
+    <td>Pharmacy site had unlabeled form fields and inaccessible PDFs.</td>
+  </tr>
+  <tr>
+    <td><strong>Andrews v. Blick Art Materials</strong><br/><span class="muted">2017</span></td>
+    <td>Settled. Site forced to comply with WCAG 2.0 AA.</td>
+    <td>Color contrast, missing alt text, focus order issues.</td>
+  </tr>
+  <tr>
+    <td><strong>National Federation of the Blind v. Target</strong><br/><span class="muted">2008</span></td>
+    <td>$6 million settlement.</td>
+    <td>Inaccessible checkout flow + missing alt text.</td>
+  </tr></tbody>
+  </table>
+  <p class="muted small">Source: publicly available case dockets. This summary is technical guidance, <em>not legal advice</em>. Consult ADA counsel for case-specific exposure.</p>
+</section>
+    
+<section class="card">
+  <h2>Per-page Lighthouse breakdown</h2>
+  <p>Each page was scanned with Google PageSpeed Insights (mobile profile, USA region). Scores below 50 are highlighted red; 50-89 amber; 90+ green. <em>Largest Contentful Paint (LCP)</em> &gt; 2.5s and <em>Cumulative Layout Shift (CLS)</em> &gt; 0.1 directly hurt conversion in addition to WCAG.</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th class="num">Perf</th>
+        <th class="num">A11y</th>
+        <th class="num">SEO</th>
+        <th class="num">BP</th>
+        <th class="num">LCP</th>
+        <th class="num">TBT</th>
+        <th class="num">CLS</th>
+      </tr>
+    </thead>
+    <tbody>
+  <tr>
+    <td><strong>Homepage</strong><br/><a href="https://www.kiddodental.com/" class="muted small">https://www.kiddodental.com/</a></td>
+    <td class="num"><span class="score score-warn">60</span></td><td class="num"><span class="score score-warn">82</span></td><td class="num"><span class="score score-warn">81</span></td><td class="num"><span class="score score-warn">78</span></td>
+    <td class="num">6,035 ms</td><td class="num">501 ms</td>
+    <td class="num">0.000</td>
+  </tr>
+  <tr>
+    <td><strong>Contact</strong><br/><a href="https://www.kiddodental.com/contact" class="muted small">https://www.kiddodental.com/contact</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num">0 ms</td><td class="num">0 ms</td>
+    <td class="num">0.000</td>
+  </tr>
+  <tr>
+    <td><strong>Services</strong><br/><a href="https://www.kiddodental.com/services" class="muted small">https://www.kiddodental.com/services</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num">0 ms</td><td class="num">0 ms</td>
+    <td class="num">0.000</td>
+  </tr>
+  <tr>
+    <td><strong>Booking</strong><br/><a href="https://www.kiddodental.com/appointments" class="muted small">https://www.kiddodental.com/appointments</a></td>
+    <td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td><td class="num"><span class="muted">—</span></td>
+    <td class="num">0 ms</td><td class="num">0 ms</td>
+    <td class="num">0.000</td>
+  </tr></tbody>
+  </table>
+</section>
+    
+<section class="card">
+  <h2>16 WCAG findings (sorted by lawsuit-risk weight)</h2>
+  <p>Each finding below maps to a specific WCAG 2.1 AA success criterion. The <em>Affected elements</em> sub-section shows the exact selector and DOM snippet your developer can target. The <em>Suggested fix</em> is ready-to-paste code (verify in your component library / CSS framework).</p>
+  <ol class="findings-list">
+  <li class="finding finding-critical">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#1</span>
+        <span class="badge badge-critical">CRITICAL</span>
+        <span class="wcag-tag">WCAG 1.4.4 (AA) &middot; Resize Text</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">`[user-scalable=&quot;no&quot;]` is used in the `&lt;meta name=&quot;viewport&quot;&gt;` element or the `[maximum-scale]` attribute is less than 5.</h3>
+    <p class="finding-desc">Disabling zooming is problematic for users with low vision who rely on screen magnification to properly see the contents of a web page. [Learn more about the viewport meta tag](https://dequeuniversity.com/rules/axe/4.9/meta-viewport).</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 1)</div><ul class="elements-list"><li><code class="selector">head &gt; meta</code><div class="snippet-line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=0&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 1.4.4: allow zoom --&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot; /&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-critical">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#2</span>
+        <span class="badge badge-critical">CRITICAL</span>
+        <span class="wcag-tag">WCAG 4.1.2 (A) &middot; Name, Role, Value</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">ARIA attributes must conform to valid values</h3>
+    <p class="finding-desc">Ensure all ARIA attributes have valid values</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">.cycle-pager-active</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 1&quot; aria-label=&quot;advance to slide 1&quot; class=&quot;cycle-pager-active&quot;&gt;&lt;/a&gt;</div></li><li><code class="selector">a[aria-controls=&quot;slide 2&quot;]</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 2&quot; aria-label=&quot;advance to slide 2&quot;&gt;&lt;/a&gt;</div></li><li><code class="selector">a[aria-controls=&quot;slide 3&quot;]</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 3&quot; aria-label=&quot;advance to slide 3&quot;&gt;&lt;/a&gt;</div></li><li><code class="selector">a[aria-controls=&quot;slide 4&quot;]</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 4&quot; aria-label=&quot;advance to slide 4&quot;&gt;&lt;/a&gt;</div></li><li><code class="selector">a[aria-controls=&quot;slide 5&quot;]</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 5&quot; aria-label=&quot;advance to slide 5&quot;&gt;&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 4.1.2: ARIA values must be valid (e.g. aria-expanded=&quot;true|false&quot;) --&gt;
+&lt;button aria-expanded=&quot;false&quot; aria-controls=&quot;menu&quot;&gt;Menu&lt;/button&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-serious">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#3</span>
+        <span class="badge badge-serious">SERIOUS</span>
+        <span class="wcag-tag">WCAG 4.1.2 (A) &middot; Name, Role, Value</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">`[aria-*]` attributes do not have valid values</h3>
+    <p class="finding-desc">Assistive technologies, like screen readers, can&#39;t interpret ARIA attributes with invalid values. [Learn more about valid values for ARIA attributes](https://dequeuniversity.com/rules/axe/4.9/aria-valid-attr-value).</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">div.spot04 &gt; div.mod &gt; div.spotpager &gt; a.cycle-pager-active</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 1&quot; aria-label=&quot;advance to slide 1&quot; class=&quot;cycle-pager-active&quot;&gt;</div></li><li><code class="selector">div.spot04 &gt; div.mod &gt; div.spotpager &gt; a</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 2&quot; aria-label=&quot;advance to slide 2&quot;&gt;</div></li><li><code class="selector">div.spot04 &gt; div.mod &gt; div.spotpager &gt; a</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 3&quot; aria-label=&quot;advance to slide 3&quot;&gt;</div></li><li><code class="selector">div.spot04 &gt; div.mod &gt; div.spotpager &gt; a</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 4&quot; aria-label=&quot;advance to slide 4&quot;&gt;</div></li><li><code class="selector">div.spot04 &gt; div.mod &gt; div.spotpager &gt; a</code><div class="snippet-line">&lt;a href=&quot;javascript:void(0)&quot; aria-controls=&quot;slide 5&quot; aria-label=&quot;advance to slide 5&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 4.1.2: ARIA values must be valid (e.g. aria-expanded=&quot;true|false&quot;) --&gt;
+&lt;button aria-expanded=&quot;false&quot; aria-controls=&quot;menu&quot;&gt;Menu&lt;/button&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-serious">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#4</span>
+        <span class="badge badge-serious">SERIOUS</span>
+        <span class="wcag-tag">WCAG 1.4.3 (AA) &middot; Contrast (Minimum)</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">Background and foreground colors do not have a sufficient contrast ratio.</h3>
+    <p class="finding-desc">Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.9/color-contrast).</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">div#hd &gt; div.container &gt; div#utilitynav &gt; a.appointmentrequest</code><div class="snippet-line">&lt;a class=&quot;appointmentrequest&quot; href=&quot;/appointment-request&quot;&gt;</div></li><li><code class="selector">div.spotlight &gt; div.spot01 &gt; a.first &gt; h2.topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;</div></li><li><code class="selector">div.spotlight &gt; div.spot01 &gt; a &gt; h2.topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;</div></li><li><code class="selector">div.spotlight &gt; div.spot01 &gt; a.last &gt; h2.topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;</div></li><li><code class="selector">div.spotlight &gt; div.spot03 &gt; a.first &gt; h2.topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (css)</div><pre><code>/* WCAG 1.4.3 requires 4.5:1 contrast for normal text */
+.your-class {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+/* Verify: https://webaim.org/resources/contrastchecker/ */</code></pre></div>
+  </li>
+  <li class="finding finding-serious">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#5</span>
+        <span class="badge badge-serious">SERIOUS</span>
+        <span class="wcag-tag">WCAG 1.4.3 (AA) &middot; Contrast (Minimum)</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">Elements must meet minimum color contrast ratio thresholds</h3>
+    <p class="finding-desc">Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">.appointmentrequest</code><div class="snippet-line">&lt;a class=&quot;appointmentrequest&quot; href=&quot;/appointment-request&quot;&gt;</div></li><li><code class="selector">.first[href$=&quot;patient-forms&quot;] &gt; h2</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;Patient&lt;br&gt;Forms&lt;/h2&gt;</div></li><li><code class="selector">a[href$=&quot;office-tour&quot;] &gt; h2</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;Office&lt;br&gt;Tour&lt;/h2&gt;</div></li><li><code class="selector">.last[href$=&quot;what-sets-us-apart&quot;] &gt; h2</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;What Sets&lt;br&gt;Us Apart&lt;/h2&gt;</div></li><li><code class="selector">.first[href$=&quot;preventive-care&quot;] &gt; h2</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;Preventive&lt;br&gt;Care&lt;/h2&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (css)</div><pre><code>/* WCAG 1.4.3 requires 4.5:1 contrast for normal text */
+.your-class {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+/* Verify: https://webaim.org/resources/contrastchecker/ */</code></pre></div>
+  </li>
+  <li class="finding finding-serious">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#6</span>
+        <span class="badge badge-serious">SERIOUS</span>
+        <span class="wcag-tag">WCAG 1.4.3 (AA) &middot; Contrast (Minimum)</span>
+      </div>
+      <div class="finding-head-right muted small">Contact</div>
+    </div>
+    <h3 class="finding-title">Elements must meet minimum color contrast ratio thresholds</h3>
+    <p class="finding-desc">Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 4)</div><ul class="elements-list"><li><code class="selector">.appointmentrequest</code><div class="snippet-line">&lt;a class=&quot;appointmentrequest&quot; href=&quot;/appointment-request&quot;&gt;</div></li><li><code class="selector">.info.south &gt; .topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;South San Antonio&lt;/h2&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .street</code><div class="snippet-line">&lt;div class=&quot;street&quot;&gt;3520 S New Braunfels Ave #100&lt;br&gt;San Antonio, TX 78223&lt;/div&gt;</div></li><li><code class="selector">.info.south &gt; .phone[href=&quot;tel:210-532-3040&quot;]</code><div class="snippet-line">&lt;a class=&quot;phone&quot; href=&quot;tel:210-532-3040&quot;&gt;(210) 532-3040&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (css)</div><pre><code>/* WCAG 1.4.3 requires 4.5:1 contrast for normal text */
+.your-class {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+/* Verify: https://webaim.org/resources/contrastchecker/ */</code></pre></div>
+  </li>
+  <li class="finding finding-serious">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#7</span>
+        <span class="badge badge-serious">SERIOUS</span>
+        <span class="wcag-tag">WCAG 1.4.3 (AA) &middot; Contrast (Minimum)</span>
+      </div>
+      <div class="finding-head-right muted small">Services</div>
+    </div>
+    <h3 class="finding-title">Elements must meet minimum color contrast ratio thresholds</h3>
+    <p class="finding-desc">Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 4)</div><ul class="elements-list"><li><code class="selector">.appointmentrequest</code><div class="snippet-line">&lt;a class=&quot;appointmentrequest&quot; href=&quot;/appointment-request&quot;&gt;</div></li><li><code class="selector">.info.south &gt; .topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;South San Antonio&lt;/h2&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .street</code><div class="snippet-line">&lt;div class=&quot;street&quot;&gt;3520 S New Braunfels Ave #100&lt;br&gt;San Antonio, TX 78223&lt;/div&gt;</div></li><li><code class="selector">.info.south &gt; .phone[href=&quot;tel:210-532-3040&quot;]</code><div class="snippet-line">&lt;a class=&quot;phone&quot; href=&quot;tel:210-532-3040&quot;&gt;(210) 532-3040&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (css)</div><pre><code>/* WCAG 1.4.3 requires 4.5:1 contrast for normal text */
+.your-class {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+/* Verify: https://webaim.org/resources/contrastchecker/ */</code></pre></div>
+  </li>
+  <li class="finding finding-serious">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#8</span>
+        <span class="badge badge-serious">SERIOUS</span>
+        <span class="wcag-tag">WCAG 1.4.3 (AA) &middot; Contrast (Minimum)</span>
+      </div>
+      <div class="finding-head-right muted small">Booking</div>
+    </div>
+    <h3 class="finding-title">Elements must meet minimum color contrast ratio thresholds</h3>
+    <p class="finding-desc">Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 4)</div><ul class="elements-list"><li><code class="selector">.appointmentrequest</code><div class="snippet-line">&lt;a class=&quot;appointmentrequest&quot; href=&quot;/appointment-request&quot;&gt;</div></li><li><code class="selector">.info.south &gt; .topic</code><div class="snippet-line">&lt;h2 class=&quot;topic&quot;&gt;South San Antonio&lt;/h2&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .street</code><div class="snippet-line">&lt;div class=&quot;street&quot;&gt;3520 S New Braunfels Ave #100&lt;br&gt;San Antonio, TX 78223&lt;/div&gt;</div></li><li><code class="selector">.info.south &gt; .phone[href=&quot;tel:210-532-3040&quot;]</code><div class="snippet-line">&lt;a class=&quot;phone&quot; href=&quot;tel:210-532-3040&quot;&gt;(210) 532-3040&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (css)</div><pre><code>/* WCAG 1.4.3 requires 4.5:1 contrast for normal text */
+.your-class {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+/* Verify: https://webaim.org/resources/contrastchecker/ */</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#9</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.4.4 (AA) &middot; Resize Text</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">Zooming and scaling must not be disabled</h3>
+    <p class="finding-desc">Ensure &lt;meta name=&quot;viewport&quot;&gt; does not disable text scaling and zooming</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 1)</div><ul class="elements-list"><li><code class="selector">meta[name=&quot;viewport&quot;]</code><div class="snippet-line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=0&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 1.4.4: allow zoom --&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot; /&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#10</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.3.1 (A) &middot; Info and Relationships</span>
+      </div>
+      <div class="finding-head-right muted small">Homepage</div>
+    </div>
+    <h3 class="finding-title">All page content should be contained by landmarks</h3>
+    <p class="finding-desc">Ensure all page content is contained by landmarks</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">.address[href=&quot;/north-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;North San Antonio&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-495-6800&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 495-6800&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-532-3040&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 532-3040&lt;/span&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;South San Antonio&lt;/span&gt;</div></li><li><code class="selector">.email</code><div class="snippet-line">&lt;a class=&quot;email addicon mailto&quot; href=&quot;mailto:kiddodentalteam@gmail.com&quot; rel=&quot;kiddodentalteam@gmail.com&quot; title=&quot;&quot; aria-label=&quot;email us&quot;&gt;&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- Wrap content in landmark roles so screen readers can navigate --&gt;
+&lt;header role=&quot;banner&quot;&gt;...&lt;/header&gt;
+&lt;nav role=&quot;navigation&quot;&gt;...&lt;/nav&gt;
+&lt;main role=&quot;main&quot;&gt;...&lt;/main&gt;
+&lt;footer role=&quot;contentinfo&quot;&gt;...&lt;/footer&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#11</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.4.4 (AA) &middot; Resize Text</span>
+      </div>
+      <div class="finding-head-right muted small">Contact</div>
+    </div>
+    <h3 class="finding-title">Zooming and scaling must not be disabled</h3>
+    <p class="finding-desc">Ensure &lt;meta name=&quot;viewport&quot;&gt; does not disable text scaling and zooming</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 1)</div><ul class="elements-list"><li><code class="selector">meta[name=&quot;viewport&quot;]</code><div class="snippet-line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=0&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 1.4.4: allow zoom --&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot; /&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#12</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.3.1 (A) &middot; Info and Relationships</span>
+      </div>
+      <div class="finding-head-right muted small">Contact</div>
+    </div>
+    <h3 class="finding-title">All page content should be contained by landmarks</h3>
+    <p class="finding-desc">Ensure all page content is contained by landmarks</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">.address[href=&quot;/north-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;North San Antonio&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-495-6800&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 495-6800&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-532-3040&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 532-3040&lt;/span&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;South San Antonio&lt;/span&gt;</div></li><li><code class="selector">.email</code><div class="snippet-line">&lt;a class=&quot;email addicon mailto&quot; href=&quot;mailto:kiddodentalteam@gmail.com&quot; rel=&quot;kiddodentalteam@gmail.com&quot; title=&quot;&quot; aria-label=&quot;email us&quot;&gt;&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- Wrap content in landmark roles so screen readers can navigate --&gt;
+&lt;header role=&quot;banner&quot;&gt;...&lt;/header&gt;
+&lt;nav role=&quot;navigation&quot;&gt;...&lt;/nav&gt;
+&lt;main role=&quot;main&quot;&gt;...&lt;/main&gt;
+&lt;footer role=&quot;contentinfo&quot;&gt;...&lt;/footer&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#13</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.4.4 (AA) &middot; Resize Text</span>
+      </div>
+      <div class="finding-head-right muted small">Services</div>
+    </div>
+    <h3 class="finding-title">Zooming and scaling must not be disabled</h3>
+    <p class="finding-desc">Ensure &lt;meta name=&quot;viewport&quot;&gt; does not disable text scaling and zooming</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 1)</div><ul class="elements-list"><li><code class="selector">meta[name=&quot;viewport&quot;]</code><div class="snippet-line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=0&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 1.4.4: allow zoom --&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot; /&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#14</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.3.1 (A) &middot; Info and Relationships</span>
+      </div>
+      <div class="finding-head-right muted small">Services</div>
+    </div>
+    <h3 class="finding-title">All page content should be contained by landmarks</h3>
+    <p class="finding-desc">Ensure all page content is contained by landmarks</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">.address[href=&quot;/north-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;North San Antonio&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-495-6800&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 495-6800&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-532-3040&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 532-3040&lt;/span&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;South San Antonio&lt;/span&gt;</div></li><li><code class="selector">.email</code><div class="snippet-line">&lt;a class=&quot;email addicon mailto&quot; href=&quot;mailto:kiddodentalteam@gmail.com&quot; rel=&quot;kiddodentalteam@gmail.com&quot; title=&quot;&quot; aria-label=&quot;email us&quot;&gt;&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- Wrap content in landmark roles so screen readers can navigate --&gt;
+&lt;header role=&quot;banner&quot;&gt;...&lt;/header&gt;
+&lt;nav role=&quot;navigation&quot;&gt;...&lt;/nav&gt;
+&lt;main role=&quot;main&quot;&gt;...&lt;/main&gt;
+&lt;footer role=&quot;contentinfo&quot;&gt;...&lt;/footer&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#15</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.4.4 (AA) &middot; Resize Text</span>
+      </div>
+      <div class="finding-head-right muted small">Booking</div>
+    </div>
+    <h3 class="finding-title">Zooming and scaling must not be disabled</h3>
+    <p class="finding-desc">Ensure &lt;meta name=&quot;viewport&quot;&gt; does not disable text scaling and zooming</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 1)</div><ul class="elements-list"><li><code class="selector">meta[name=&quot;viewport&quot;]</code><div class="snippet-line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=0&quot;&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- WCAG 1.4.4: allow zoom --&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot; /&gt;</code></pre></div>
+  </li>
+  <li class="finding finding-moderate">
+    <div class="finding-head">
+      <div class="finding-head-left">
+        <span class="finding-num">#16</span>
+        <span class="badge badge-moderate">MODERATE</span>
+        <span class="wcag-tag">WCAG 1.3.1 (A) &middot; Info and Relationships</span>
+      </div>
+      <div class="finding-head-right muted small">Booking</div>
+    </div>
+    <h3 class="finding-title">All page content should be contained by landmarks</h3>
+    <p class="finding-desc">Ensure all page content is contained by landmarks</p>
+    <div class="elements"><div class="elements-label">Affected elements (top 5)</div><ul class="elements-list"><li><code class="selector">.address[href=&quot;/north-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;North San Antonio&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-495-6800&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 495-6800&lt;/span&gt;</div></li><li><code class="selector">.phone[href=&quot;tel:210-532-3040&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;(210) 532-3040&lt;/span&gt;</div></li><li><code class="selector">.address[href=&quot;/south-san-antonio-location&quot;] &gt; .cta</code><div class="snippet-line">&lt;span class=&quot;cta&quot;&gt;South San Antonio&lt;/span&gt;</div></li><li><code class="selector">.email</code><div class="snippet-line">&lt;a class=&quot;email addicon mailto&quot; href=&quot;mailto:kiddodentalteam@gmail.com&quot; rel=&quot;kiddodentalteam@gmail.com&quot; title=&quot;&quot; aria-label=&quot;email us&quot;&gt;&lt;/a&gt;</div></li></ul></div>
+    <div class="fix"><div class="fix-label">Suggested fix (html)</div><pre><code>&lt;!-- Wrap content in landmark roles so screen readers can navigate --&gt;
+&lt;header role=&quot;banner&quot;&gt;...&lt;/header&gt;
+&lt;nav role=&quot;navigation&quot;&gt;...&lt;/nav&gt;
+&lt;main role=&quot;main&quot;&gt;...&lt;/main&gt;
+&lt;footer role=&quot;contentinfo&quot;&gt;...&lt;/footer&gt;</code></pre></div>
+  </li></ol>
+</section>
+    
+<section class="card">
+  <h2>Site screenshots (Lighthouse mobile profile)</h2>
+  <p>Final-frame screenshots captured during the scan. Useful as evidence in your remediation planning meeting.</p>
+  <div class="shots-grid">
+  <figure class="shot">
+    <img src="data:image/jpeg;base64,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" alt="Final rendered screenshot of Homepage" />
+    <figcaption>Homepage — <a href="https://www.kiddodental.com/">https://www.kiddodental.com/</a></figcaption>
+  </figure></div>
+</section>
+    
+<section class="card">
+  <h2>ROI projection (Dental practice (new-patient appointments))</h2>
+  <p>Estimates use industry-standard ranges for your segment. Plug in your actual numbers to refine — but order-of-magnitude is conservative.</p>
+  <table class="data-table tight">
+    <tr><td>Average order value (AOV)</td><td class="num">$1,800</td></tr>
+    <tr><td>Estimated monthly visitors</td><td class="num">3,500</td></tr>
+    <tr><td>Baseline conversion rate</td><td class="num">1.80%</td></tr>
+    <tr><td>Conversion lift after remediation</td><td class="num">+25%</td></tr>
+    <tr><td>Recoverable revenue per month</td><td class="num"><strong style="color:#065f46">$28,350</strong></td></tr>
+    <tr><td>Recoverable revenue per year</td><td class="num"><strong style="color:#065f46">$340,200</strong></td></tr>
+  </table>
+  <p class="muted small">Methodology: lift assumes industry baseline accessibility-related friction reduction (UX research averages 18-32% per segment). Lab/conversion data is correlative, not causal; treat as planning input.</p>
+</section>
+    
+<section class="card">
+  <h2>Recommended remediation plan</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Phase</th><th>Scope</th><th>Time window</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-critical">P1</span></td>
+        <td>2 critical WCAG violations (forms, ARIA, missing labels, contrast on CTAs)</td>
+        <td>72 hours</td>
+        <td>Removes the highest-impact ADA litigation evidence + recovers the largest conversion friction.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-serious">P2</span></td>
+        <td>6 serious violations (link names, heading order, color-contrast on body text)</td>
+        <td>7 days</td>
+        <td>Brings public pages to defensible posture; pages now pass automated scanner thresholds.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-moderate">P3</span></td>
+        <td>8 moderate violations (semantic lists, role hygiene, SVG alts)</td>
+        <td>14 days</td>
+        <td>Polishes for screen-reader users; aligns with WCAG 2.1 AA fully.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+    
+<section class="card cta-card">
+  <h2>Need help executing? Two structured add-ons</h2>
+  <div class="cta-grid">
+    <div class="cta-box">
+      <p class="cta-eyebrow">One-time engagement</p>
+      <h3>Fix Sprint &mdash; $1,500</h3>
+      <p>Focused 14-day remediation window. We implement the P1 + P2 fixes for you, hand back a clean re-scan and a brief signed-off compliance summary.</p>
+      <p class="muted small">Reply with the word <strong>SPRINT</strong> to start scoping.</p>
+    </div>
+    <div class="cta-box">
+      <p class="cta-eyebrow">Ongoing monitoring</p>
+      <h3>Monthly Guard &mdash; $299/mo</h3>
+      <p>Monthly re-scan + light fixes + quarterly review. Alerts when new content regresses your score. Includes a private dashboard.</p>
+      <p class="muted small">Reply with the word <strong>MONTHLY</strong> to start.</p>
+    </div>
+  </div>
+</section>
+    
+<footer>
+  <p><strong>Karacan Analytics LLC</strong> &middot; Beverly, NJ, United States</p>
+  <p>Reports: <a href="mailto:reports@karacan-analytics.com">reports@karacan-analytics.com</a> &middot;
+     Sales: <a href="mailto:hello@karacan-analytics.com">hello@karacan-analytics.com</a></p>
+  <p class="muted small">This report provides technical and operational guidance based on automated heuristics. It is <strong>not legal advice</strong>. Court outcomes depend on jurisdiction, plaintiff theory, and remediation evidence. We recommend ADA counsel review prior to formal use.</p>
+  <p class="muted small">
+    <a href="https://karacan-analytics.com/terms.html">Terms</a> &middot;
+    <a href="https://karacan-analytics.com/privacy.html">Privacy</a> &middot;
+    <a href="https://karacan-analytics.com/unsubscribe.html">Unsubscribe</a>
+  </p>
+</footer>
+  </div>
+</body></html>
