@@ -1,14 +1,16 @@
-# Triggers Vercel Production deploy after every push to main.
-# Setup (one time):
-#   1. Vercel → Project karacan-analytics-site → Settings → Deploy Hooks → Create Hook (Production)
-#   2. GitHub → repo Settings → Secrets → Actions → New: VERCEL_DEPLOY_HOOK = paste hook URL
-# Note: GitHub does not allow `secrets` in job/step `if:` — pass via env and check in shell.
+# Triggers Vercel Production deploy only when site config changes (NOT previews/reports HTML).
+# previews/ + reports/ are served via vercel.json rewrite; Ignored Build Step is backup.
+#
+# Setup: Vercel → Settings → Deploy Hooks → VERCEL_DEPLOY_HOOK in GitHub secrets.
 
 name: Deploy Vercel Production
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "previews/**"
+      - "reports/**"
   workflow_dispatch:
 
 jobs:
@@ -20,10 +22,9 @@ jobs:
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
           if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
-            echo "::warning::VERCEL_DEPLOY_HOOK secret is missing."
-            echo "Add it from Vercel → Settings → Deploy Hooks, or connect Git in Vercel project settings."
+            echo "::warning::VERCEL_DEPLOY_HOOK secret is missing — skip"
             exit 0
           fi
           echo "Calling Vercel deploy hook..."
           curl -fsS -X POST "$VERCEL_DEPLOY_HOOK"
-          echo "Deploy hook accepted (build started on Vercel)."
+          echo "Deploy hook accepted."

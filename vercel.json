@@ -28,13 +28,15 @@
     {
       "source": "/previews/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
       ]
     },
     {
       "source": "/reports/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
       ]
     },
     {
