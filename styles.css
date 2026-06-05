@@ -343,6 +343,20 @@ a.ka-vsl-card.ka-stripe-link .ka-stripe-cta {
   pointer-events: none;
 }
 
+.hero-teaser-findings--clear li {
+  margin-bottom: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text);
+  filter: none;
+  opacity: 1;
+  user-select: auto;
+  pointer-events: auto;
+}
+
 @media (max-width: 899px) {
   .hero-teaser-findings .blur-line {
     filter: none;

@@ -26,3 +26,13 @@ body{font-family:Segoe UI,Roboto,sans-serif;margin:0;background:#0d1117;color:#e
 .roi-note{margin:0;font-size:14px;line-height:1.5;color:#dcfce7}
 .site-link{margin:0 0 12px;font-size:13px}
 .site-link a{color:#58a6ff}
+.sample-link a{color:#58a6ff;font-weight:600}
+.cta-secondary{background:#1f6feb}
+.risk-dashboard--pending .pending-card{background:linear-gradient(135deg,#1e3a5f,#172554);border:1px solid #38bdf8;border-radius:14px;padding:22px 24px}
+.pending-eyebrow{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#93c5fd}
+.pending-value{margin:8px 0 6px;font-size:1.75rem;font-weight:800;color:#fff}
+.pending-sub{margin:0;font-size:14px;color:#bfdbfe;line-height:1.5}
+.sample-card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:22px 24px}
+.sample-eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7ee787}
+.sample-title{margin:8px 0 6px;font-size:1.25rem;font-weight:700;color:#fff}
+.sample-sub{margin:0 0 14px;font-size:14px;color:#8b949e;line-height:1.5}
