@@ -1,43 +1,38 @@
-# karacan-analytics.com — vitrin (statik)
+# karacan-analytics.com — Risk Shield (Next.js + Supabase)
 
-Profesyonel site + Privacy + Terms. **Build yok:** Vercel / Cloudflare Pages / Netlify ile doğrudan deploy.
+Marketing pages (static in `public/`) + **dynamic previews** at `/preview/[slug]` loaded live from Supabase `scan_results`.
 
 **Repo:** https://github.com/mahmutkaracan48/karacan-analytics-site
 
-## Conversion odaklı ana sayfa (Snapshot + Monitoring + Analytics)
+## Architecture
 
-`index.html` artık üç satırı birlikte taşır:
+| Route | Source |
+|-------|--------|
+| `/` | `public/index.html` (middleware rewrite) |
+| `/preview/{slug}` | Next.js `app/preview/[slug]` → Supabase anon read |
+| `/assets/*`, `/reports/*` | `public/` |
 
-1. **Accessibility Risk Snapshot** (`#snapshot`) — Stripe Payment Link: `KA_STRIPE_SNAPSHOT` (script bloğu). Boşsa butonlar `mailto:contact@karacan-analytics.com` ile Stripe linki ister.
-2. **Monitoring (MRR)** — tabloda `mailto:` ile başlat; Stripe Subscription linkleri hazır olunca aynı hücrelere yapıştır.
-3. **Analytics sprint** — mevcut Payment Link: `KA_STRIPE_ANALYTICS_SPRINT`.
+**Deprecated:** GitHub push of `previews/*.html` — removed.
 
-## VSL (video) embed
+## Local dev
 
-YouTube **unlisted** (veya Wistia/Vimeo) embed URL’ini `index.html` sonundaki script’te ayarla:
+```bash
+cp .env.example .env.local
+# Set NEXT_PUBLIC_SUPABASE_ANON_KEY from Supabase Dashboard → API → anon key
 
-```js
-var KA_VSL_EMBED_URL = "https://www.youtube.com/embed/VIDEO_ID";
+npm install
+npm run dev
+# http://localhost:3000/preview/{16-char-hex-slug}
 ```
-
-Boş bırakılırsa sayfada yer tutucu metin görünür.
-
-## Stripe sırası
-
-1. Siteyi canlı URL ile yayınla.
-2. Stripe Dashboard → **Payment links** → Snapshot ürünü için link → `KA_STRIPE_SNAPSHOT`.
-3. İşletme bilgisinde bu domain gösterilsin.
 
 ## Vercel deploy
 
-1. [vercel.com](https://vercel.com) → Import **mahmutkaracan48/karacan-analytics-site**.
-2. Framework: **Other** (static).
-3. **Domains** → `karacan-analytics.com`.
+1. Import repo — Framework: **Next.js**
+2. **Environment variables** (Production):
+   - `NEXT_PUBLIC_SUPABASE_URL` = `https://zxussxnggorcxkebcgjh.supabase.co`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = anon/public key
+3. Domain: `karacan-analytics.com`
 
-## İletişim e-postası
+Migration `002_preview_scans_saas.sql` must be applied before previews resolve.
 
-Varsayılan: **contact@karacan-analytics.com** — tüm `mailto:` ve footer ile uyumlu tut.
-
-Manuel Git: [DEPLOY_GITHUB.md](./DEPLOY_GITHUB.md)
-
-<!-- deploy bump: 2026-05-25 13:33 UTC -->
+See also: `DEPLOY_VERCEL.md`

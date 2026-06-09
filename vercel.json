@@ -1,51 +1,20 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
   "cleanUrls": false,
   "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/previews/:path*",
-      "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/previews/:path*"
-    },
-    {
-      "source": "/reports/:path*",
-      "destination": "https://raw.githubusercontent.com/mahmutkaracan48/karacan-analytics-site/main/reports/:path*"
-    }
-  ],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://zxussxnggorcxkebcgjh.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4dXNzeG5nZ29yY3hrZWJjZ2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NjU1MDQsImV4cCI6MjA5NjU0MTUwNH0._etwzbNcAOGi3tbeTJb2ltrCJ_uoe8U2N4wt5MJrqTA"
+  },
   "headers": [
     {
-      "source": "/styles.css",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    },
-    {
       "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
-      "source": "/previews/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" },
-        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
-      ]
-    },
-    {
-      "source": "/reports/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" },
-        { "key": "Content-Type", "value": "text/html; charset=utf-8" }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
+      "source": "/preview/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=300, stale-while-revalidate=600" }]
     }
   ]
 }
