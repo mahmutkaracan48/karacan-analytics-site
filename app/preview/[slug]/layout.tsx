@@ -4,7 +4,7 @@ export default function PreviewLayout({ children }: { children: React.ReactNode 
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="/assets/preview.v1.css" />
+        <link rel="stylesheet" href="/assets/preview.v2.css" />
       </head>
       <body>{children}</body>
     </html>

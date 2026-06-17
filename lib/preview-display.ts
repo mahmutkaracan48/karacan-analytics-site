@@ -1,0 +1,115 @@
+import type { ScanPreview } from "@/lib/supabase";
+
+export type SegmentKey = "Dental" | "Medspa" | "HVAC" | "GENERAL";
+
+const SEGMENT_BASE_MONTHLY: Record<SegmentKey, number> = {
+  Dental: 8_200,
+  Medspa: 6_400,
+  HVAC: 4_800,
+  GENERAL: 5_200,
+};
+
+const SEGMENT_COPY: Record<
+  SegmentKey,
+  { label: string; hook: string; compliance: string }
+> = {
+  Dental: {
+    label: "dental practice",
+    hook: "new-patient booking and intake pages",
+    compliance: "ADA Title III exposure on public appointment paths",
+  },
+  Medspa: {
+    label: "medspa",
+    hook: "consultation booking and treatment inquiry flows",
+    compliance: "accessibility friction on high-intent service pages",
+  },
+  HVAC: {
+    label: "HVAC contractor",
+    hook: "estimate requests and emergency service landing pages",
+    compliance: "mobile performance drag on lead-capture forms",
+  },
+  GENERAL: {
+    label: "business",
+    hook: "public booking and lead-capture pages",
+    compliance: "WCAG / mobile lab signals on revenue-critical URLs",
+  },
+};
+
+const DEFAULT_ROI = "$144,000";
+
+export function normalizeSegment(raw: string | null | undefined): SegmentKey {
+  const s = String(raw || "").trim().toLowerCase();
+  if (s === "dental") return "Dental";
+  if (s === "medspa") return "Medspa";
+  if (s === "hvac") return "HVAC";
+  return "GENERAL";
+}
+
+function formatMoney(n: number): string {
+  return `$${Math.round(n).toLocaleString("en-US")}`;
+}
+
+export function computeMonthlyRoi(scan: ScanPreview): number {
+  const seg = normalizeSegment(scan.segment);
+  const base = SEGMENT_BASE_MONTHLY[seg];
+  const critical = Math.max(1, Math.min(scan.critical_issues_count || 3, 8));
+  let mult = 0.9 + critical * 0.045;
+
+  const perf = scan.psi_score;
+  if (perf != null) {
+    if (perf < 30) mult *= 1.35;
+    else if (perf < 50) mult *= 1.15;
+    else if (perf >= 70) mult *= 0.88;
+  }
+  if (!scan.psi_ok) mult *= 0.92;
+
+  return Math.round(base * mult);
+}
+
+export function displayRoi(scan: ScanPreview): { monthly: string; note: string } {
+  const stored = String(scan.roi_display || "").trim();
+  if (stored && stored !== DEFAULT_ROI && !stored.endsWith("/mo")) {
+    return { monthly: stored, note: "Modeled from public-page friction signals." };
+  }
+  const monthly = computeMonthlyRoi(scan);
+  const seg = normalizeSegment(scan.segment);
+  return {
+    monthly: `${formatMoney(monthly)}/mo`,
+    note: `Modeled for ${SEGMENT_COPY[seg].label} sites with ${scan.critical_issues_count || "multiple"} priority signals.`,
+  };
+}
+
+export function segmentCopy(scan: ScanPreview) {
+  return SEGMENT_COPY[normalizeSegment(scan.segment)];
+}
+
+export function formatScannedAt(iso: string | null | undefined): string {
+  if (!iso) return "Recent lab scan";
+  try {
+    return new Date(iso).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return "Recent lab scan";
+  }
+}
+
+export function displayDomain(scan: ScanPreview): string {
+  if (scan.domain) return scan.domain;
+  try {
+    const u = scan.website || "";
+    if (!u) return "";
+    return new URL(u.startsWith("http") ? u : `https://${u}`).hostname.replace(/^www\./i, "");
+  } catch {
+    return "";
+  }
+}
+
+export function priorityLabel(scan: ScanPreview): string {
+  const n = scan.critical_issues_count || 0;
+  if (n >= 5) return "Critical";
+  if (n >= 3) return "Elevated";
+  return "Moderate";
+}
