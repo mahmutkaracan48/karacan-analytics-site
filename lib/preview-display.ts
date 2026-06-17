@@ -9,6 +9,13 @@ const SEGMENT_BASE_MONTHLY: Record<SegmentKey, number> = {
   GENERAL: 5_200,
 };
 
+const SEGMENT_ROI_CAP: Record<SegmentKey, number> = {
+  Dental: 6_500,
+  Medspa: 5_200,
+  HVAC: 4_000,
+  GENERAL: 4_500,
+};
+
 const SEGMENT_COPY: Record<
   SegmentKey,
   { label: string; hook: string; compliance: string }
@@ -45,42 +52,73 @@ export function normalizeSegment(raw: string | null | undefined): SegmentKey {
   return "GENERAL";
 }
 
+export function inferSegment(scan: ScanPreview): SegmentKey {
+  if (scan.segment && String(scan.segment).trim()) {
+    return normalizeSegment(scan.segment);
+  }
+  const hay = `${scan.company_name || ""} ${scan.website || ""} ${scan.domain || ""}`.toLowerCase();
+  if (/\b(dental|dentist|orthodont|oral surgery|family dental)\b/.test(hay)) return "Dental";
+  if (/\b(medspa|med spa|medical spa|botox|aesthetic|cosmetic|derma)\b/.test(hay)) return "Medspa";
+  if (/\b(hvac|heating|cooling|air conditioning|ac repair|furnace)\b/.test(hay)) return "HVAC";
+  return "GENERAL";
+}
+
 function formatMoney(n: number): string {
   return `$${Math.round(n).toLocaleString("en-US")}`;
 }
 
+export function performanceScore(scan: ScanPreview): number | null {
+  if (scan.psi_perf_score != null) return scan.psi_perf_score;
+  return null;
+}
+
+export function priorityScore(scan: ScanPreview): number | null {
+  return scan.psi_score;
+}
+
+function perfForRoi(scan: ScanPreview): number | null {
+  const perf = performanceScore(scan);
+  if (perf != null) return perf;
+  return scan.psi_score;
+}
+
 export function computeMonthlyRoi(scan: ScanPreview): number {
-  const seg = normalizeSegment(scan.segment);
+  const seg = inferSegment(scan);
   const base = SEGMENT_BASE_MONTHLY[seg];
+  const cap = SEGMENT_ROI_CAP[seg];
   const critical = Math.max(1, Math.min(scan.critical_issues_count || 3, 8));
-  let mult = 0.9 + critical * 0.045;
+  let mult = 0.88 + critical * 0.04;
 
-  const perf = scan.psi_score;
+  const perf = perfForRoi(scan);
   if (perf != null) {
-    if (perf < 30) mult *= 1.35;
-    else if (perf < 50) mult *= 1.15;
-    else if (perf >= 70) mult *= 0.88;
+    if (perf < 30) mult *= 1.22;
+    else if (perf < 50) mult *= 1.1;
+    else if (perf >= 70) mult *= 0.9;
   }
-  if (!scan.psi_ok) mult *= 0.92;
+  if (!scan.psi_ok) mult *= 0.9;
 
-  return Math.round(base * mult);
+  return Math.min(Math.round(base * mult), cap);
 }
 
 export function displayRoi(scan: ScanPreview): { monthly: string; note: string } {
   const stored = String(scan.roi_display || "").trim();
-  if (stored && stored !== DEFAULT_ROI && !stored.endsWith("/mo")) {
+  if (stored && stored !== DEFAULT_ROI && !stored.includes("–") && !stored.endsWith("/mo")) {
     return { monthly: stored, note: "Modeled from public-page friction signals." };
   }
-  const monthly = computeMonthlyRoi(scan);
-  const seg = normalizeSegment(scan.segment);
+
+  const high = computeMonthlyRoi(scan);
+  const low = Math.max(Math.round(high * 0.68), Math.round(high * 0.55));
+  const seg = inferSegment(scan);
+  const signals = scan.critical_issues_count || 0;
+
   return {
-    monthly: `${formatMoney(monthly)}/mo`,
-    note: `Modeled for ${SEGMENT_COPY[seg].label} sites with ${scan.critical_issues_count || "multiple"} priority signals.`,
+    monthly: `${formatMoney(low)}–${formatMoney(high)}/mo`,
+    note: `Conservative model for ${SEGMENT_COPY[seg].label} sites (${signals} priority signal${signals === 1 ? "" : "s"} on your URL).`,
   };
 }
 
 export function segmentCopy(scan: ScanPreview) {
-  return SEGMENT_COPY[normalizeSegment(scan.segment)];
+  return SEGMENT_COPY[inferSegment(scan)];
 }
 
 export function formatScannedAt(iso: string | null | undefined): string {
@@ -108,8 +146,14 @@ export function displayDomain(scan: ScanPreview): string {
 }
 
 export function priorityLabel(scan: ScanPreview): string {
-  const n = scan.critical_issues_count || 0;
-  if (n >= 5) return "Critical";
-  if (n >= 3) return "Elevated";
-  return "Moderate";
+  const r = String(scan.risk_label || "").toUpperCase();
+  if (r.includes("HIGH")) return "High";
+  if (r.includes("ELEVATED")) return "Elevated";
+  if (r.includes("MODERATE")) return "Moderate";
+  if (r.includes("PENDING")) return "Queued";
+  return "Elevated";
+}
+
+export function riskHeadline(scan: ScanPreview): string {
+  return String(scan.risk_label || "ELEVATED RISK").replace(/_/g, " ");
 }

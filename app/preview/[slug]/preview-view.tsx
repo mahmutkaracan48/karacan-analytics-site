@@ -3,7 +3,10 @@ import {
   displayDomain,
   displayRoi,
   formatScannedAt,
+  performanceScore,
   priorityLabel,
+  priorityScore,
+  riskHeadline,
   segmentCopy,
 } from "@/lib/preview-display";
 
@@ -22,13 +25,15 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
   const first = esc(scan.first_name || "there");
   const company = esc(scan.company_name || "your business");
   const website = esc(scan.website || "");
-  const risk = esc(scan.risk_label || "ELEVATED RISK");
+  const risk = esc(riskHeadline(scan));
   const offer = esc(scan.offer_url || `${SITE}/#pricing`);
   const psiOk = !!scan.psi_ok;
   const seg = segmentCopy(scan);
   const roi = displayRoi(scan);
   const domain = esc(displayDomain(scan));
   const scanned = formatScannedAt(scan.scanned_at);
+  const perf = performanceScore(scan);
+  const priority = priorityScore(scan);
   const critical = scan.critical_issues_count || 0;
   const findings = Array.isArray(scan.findings_json) ? scan.findings_json : [];
   const showFindings = findings.length
@@ -95,7 +100,7 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
 
       <div className="metrics-row">
         <div className="metric-chip">
-          <span className="metric-label">Priority level</span>
+          <span className="metric-label">Risk level</span>
           <span className="metric-value">{priorityLabel(scan)}</span>
         </div>
         <div className="metric-chip">
@@ -103,9 +108,9 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
           <span className="metric-value">{critical || "—"}</span>
         </div>
         <div className="metric-chip">
-          <span className="metric-label">Performance</span>
+          <span className="metric-label">Mobile performance</span>
           <span className="metric-value">
-            {scan.psi_score != null ? `${scan.psi_score}/100` : psiOk ? "—" : "Pending"}
+            {perf != null ? `${perf}/100` : psiOk ? "—" : "Pending"}
           </span>
         </div>
         <div className="metric-chip">
@@ -115,6 +120,13 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
           </span>
         </div>
       </div>
+
+      {psiOk && priority != null ? (
+        <p className="priority-banner muted">
+          <strong>Priority index:</strong> {priority}/100 — composite lab score combining mobile performance and
+          accessibility friction (not a legal determination).
+        </p>
+      ) : null}
 
       <div className="card">
         <div className="pill">Personalized preview · {esc(seg.label)}</div>
@@ -129,16 +141,22 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
             </a>
           </p>
         ) : null}
-        {psiOk && scan.psi_score != null ? (
+        {psiOk && perf != null ? (
           <p className="muted">
-            <strong>Google PageSpeed (mobile lab):</strong> Performance {scan.psi_score}/100
-            {scan.psi_acc_score != null ? ` · Accessibility ${scan.psi_acc_score}/100` : ""}. Lab data
-            only — not a legal determination.
+            <strong>Google PageSpeed (mobile lab):</strong> Performance {perf}/100
+            {scan.psi_acc_score != null ? ` · Accessibility ${scan.psi_acc_score}/100` : ""}. Lab data only —
+            not a legal determination.
+          </p>
+        ) : psiOk && priority != null ? (
+          <p className="muted">
+            <strong>Lab scan completed.</strong> Priority index {priority}/100
+            {scan.psi_acc_score != null ? ` · Accessibility ${scan.psi_acc_score}/100` : ""}. Performance
+            score populates on the next scan pass.
           </p>
         ) : (
           <p className="muted">
-            This page updates when the live lab pass completes. Risk Shield re-checks your domain weekly
-            after signup.
+            This page updates when the live lab pass completes. Risk Shield re-checks your domain weekly after
+            signup.
           </p>
         )}
         <p>

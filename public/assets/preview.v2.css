@@ -41,4 +41,4 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .metric-chip{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:12px 14px}
 .metric-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8b949e;margin-bottom:4px}
 .metric-value{display:block;font-size:1.1rem;font-weight:800;color:#e6edf3}
-code{font-size:12px;background:#21262d;padding:2px 6px;border-radius:4px}
+.priority-banner{margin:0 0 16px;padding:12px 14px;background:#161b22;border:1px solid #30363d;border-radius:10px;font-size:13px}
