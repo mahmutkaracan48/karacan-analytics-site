@@ -12,7 +12,7 @@ window.KA_CHECKOUT = {
   /** Pro tier — $397/mo */
   stripeProMonthlyUrl: "https://buy.stripe.com/eVqaEY4Jk0cxdcldGE0VO04",
   defaultPlan: "starter_monthly",
-  /** @deprecated one-time Snapshot — legacy only */
+  /** @deprecated one-time Snapshot — do not use in UI */
   legacySnapshotUrl: "https://buy.stripe.com/5kQ8wQ1x89N7fkt0TS0VO01",
   supportEmail: "contact@karacan-analytics.com",
   deliverySlaText: "Weekly automated scans; first report within 24 hours of signup",

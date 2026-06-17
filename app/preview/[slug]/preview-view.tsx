@@ -1,4 +1,5 @@
 import type { ScanPreview } from "@/lib/supabase";
+import { offerUrls } from "@/lib/checkout-urls";
 import {
   displayDomain,
   displayRoi,
@@ -26,7 +27,10 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
   const company = esc(scan.company_name || "your business");
   const website = esc(scan.website || "");
   const risk = esc(riskHeadline(scan));
-  const offer = esc(scan.offer_url || `${SITE}/#pricing`);
+  const offers = offerUrls(scan);
+  const offer = esc(offers.monthly);
+  const offerAnnual = esc(offers.annual);
+  const offerPro = esc(offers.pro);
   const psiOk = !!scan.psi_ok;
   const seg = segmentCopy(scan);
   const roi = displayRoi(scan);
@@ -187,10 +191,19 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
           <li>P1 / P2 / P3 remediation list your dev team can execute</li>
           <li>Alert when new critical issues appear on booking or intake paths</li>
         </ul>
-        <p className="money">$197/mo — cancel anytime · $1,970/yr (2 months free)</p>
+        <p className="money">$197/mo — cancel anytime · $1,970/yr (2 months free) · Pro $397/mo (3 domains)</p>
         <p>
           <a className="cta" href={offer}>
-            Start weekly risk monitoring
+            Start weekly risk monitoring — $197/mo
+          </a>
+        </p>
+        <p className="plan-row">
+          <a className="plan-link" href={offerAnnual}>
+            Annual plan — $1,970/yr
+          </a>
+          {" · "}
+          <a className="plan-link" href={offerPro}>
+            Pro — $397/mo
           </a>
         </p>
         <p className="subcta sample-link">
@@ -199,8 +212,15 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
           <a href={`${SITE}/#pricing`}>Compare plans</a>
         </p>
         <p className="trust">
-          Karacan Analytics · ADA risk monitoring for {seg.label} operators. This preview is generated
-          from public-page lab data for {company} only.
+          Karacan Analytics LLC · ADA risk monitoring for {seg.label} operators. This preview is generated from
+          public-page lab data for {company} only.
+        </p>
+        <p className="preview-legal muted">
+          <a href={`${SITE}/privacy`}>Privacy</a>
+          {" · "}
+          <a href={`${SITE}/terms`}>Terms</a>
+          {" · "}
+          <a href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a>
         </p>
       </div>
     </div>
