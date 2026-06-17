@@ -9,8 +9,16 @@ const STATIC_HTML: Record<string, string> = {
   "/sample-report": "/sample-report.html",
 };
 
+const LEGACY_PREVIEW = /^\/previews\/([a-f0-9]{16})\.html$/i;
+
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+
+  const legacy = path.match(LEGACY_PREVIEW);
+  if (legacy) {
+    return NextResponse.redirect(new URL(`/preview/${legacy[1]}`, request.url), 301);
+  }
+
   const target = STATIC_HTML[path];
   if (target) {
     return NextResponse.rewrite(new URL(target, request.url));
@@ -19,5 +27,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/privacy", "/terms", "/sample-report"],
+  matcher: ["/", "/privacy", "/terms", "/sample-report", "/previews/:slug*"],
 };
