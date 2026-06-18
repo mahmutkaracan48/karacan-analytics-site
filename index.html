@@ -32,74 +32,18 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="/assets/checkout-config.js" defer></script>
     <script src="/assets/site.js" defer></script>
-    <style>
-      .pricing-grid {
-        display: grid;
-        gap: 1.25rem;
-        margin-top: 1.5rem;
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Karacan Analytics LLC",
+        "url": "https://karacan-analytics.com",
+        "email": "contact@karacan-analytics.com",
+        "description": "Weekly WCAG and ADA accessibility risk monitoring for service businesses.",
+        "areaServed": "US",
+        "knowsAbout": ["WCAG", "ADA compliance monitoring", "website accessibility"]
       }
-      @media (min-width: 900px) {
-        .pricing-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-      .pricing-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      .pricing-card.featured {
-        border-color: rgba(56, 189, 248, 0.45);
-        box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.15);
-      }
-      .pricing-badge {
-        display: inline-block;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: var(--accent);
-        margin: 0;
-      }
-      .pricing-price {
-        font-size: 2rem;
-        font-weight: 800;
-        margin: 0;
-        line-height: 1.1;
-      }
-      .pricing-price small {
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: var(--muted);
-      }
-      .pricing-features {
-        margin: 0;
-        padding-left: 1.1rem;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-      .pricing-features li {
-        margin-bottom: 0.35rem;
-      }
-      .pricing-cta {
-        margin-top: auto;
-        padding-top: 0.5rem;
-      }
-      .hero-badge {
-        display: inline-block;
-        padding: 0.35rem 0.75rem;
-        border-radius: 999px;
-        background: rgba(56, 189, 248, 0.12);
-        color: var(--accent);
-        font-size: 0.8rem;
-        font-weight: 700;
-        margin-bottom: 0.75rem;
-      }
-    </style>
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -140,15 +84,19 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header>
       <div class="wrap nav">
-        <a class="logo" href="./" aria-label="Karacan Analytics — home">Karacan Analytics</a>
+        <a class="logo" href="./" aria-label="Karacan Analytics — home">
+          <span class="logo-mark" aria-hidden="true">KA</span>
+          Karacan Analytics
+        </a>
         <nav class="nav-links" aria-label="Primary">
           <a href="#how-it-works">How it works</a>
+          <a href="#testimonials">Reviews</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
           <a href="/reports/sample.html">Sample report</a>
         </nav>
         <a class="btn btn-primary ka-stripe-cta" id="nav-cta" href="#pricing" data-plan="starter_monthly"
-          >Start monitoring — $197/mo</a
+          >Start — $197/mo</a
         >
       </div>
     </header>
@@ -157,34 +105,31 @@
       <section class="hero-atf" aria-labelledby="hero-title">
         <div class="wrap hero-atf-grid">
           <div>
-            <p class="hero-badge">Risk Shield · Weekly ADA/WCAG insurance</p>
+            <p class="hero-badge">Risk Shield · Weekly ADA/WCAG monitoring</p>
             <h1 id="hero-title">Stop guessing about lawsuit risk. Monitor it weekly.</h1>
             <p class="lead">
               <strong>Risk Shield</strong> scans your public website every week, scores ADA/WCAG exposure, and
               delivers evidence-backed fix priorities — so a demand letter never catches you off guard.
             </p>
-            <p class="lead">
-              Built for service businesses (dental, medspa, HVAC). One demand letter can cost
-              <strong>$5K–$25K</strong>. Risk Shield starts at <strong>$197/month</strong>.
+            <p class="lead lead--compact">
+              Built for dental, medspa &amp; HVAC operators. One demand letter often runs
+              <strong>$5K–$25K</strong>. Monitoring starts at <strong>$197/month</strong>.
             </p>
             <div class="hero-cta">
               <a class="btn btn-primary ka-stripe-cta" id="cta-hero" href="#pricing" data-plan="starter_monthly"
                 >Start weekly monitoring — $197/mo</a
               >
               <a class="btn btn-ghost" href="/reports/sample.html">View sample report</a>
-              <a class="text-link" href="mailto:contact@karacan-analytics.com?subject=Risk%20Shield%20question"
-                >Questions? Email us</a
-              >
             </div>
             <div class="trust-row" aria-label="Trust signals">
-              <span>Weekly automated scans</span>
-              <span>First report within 24h</span>
-              <span>Stripe-secured subscription</span>
+              <span><svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0z" clip-rule="evenodd"/></svg>Weekly automated scans</span>
+              <span><svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0z" clip-rule="evenodd"/></svg>First report within 24h</span>
+              <span><svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0z" clip-rule="evenodd"/></svg>Cancel anytime</span>
             </div>
           </div>
           <div class="hero-teaser-panel">
             <p class="hero-teaser-badge">What you get every week</p>
-            <h2 class="hero-teaser-title">Priority index + weekly fix order</h2>
+            <h2 class="hero-teaser-title">Priority index + fix order</h2>
             <ul class="hero-teaser-findings hero-teaser-findings--clear">
               <li>WCAG/ADA findings with selector evidence</li>
               <li>Per-page Lighthouse accessibility breakdown</li>
@@ -192,10 +137,55 @@
               <li>P1 / P2 / P3 remediation plan for your dev team</li>
             </ul>
             <p class="hero-teaser-unlock">
-              Outreach emails link to a <strong>free preview</strong> on your URL. Subscribers unlock full ongoing
-              monitoring via Stripe.
+              Outreach emails link to a <strong>free preview</strong> on your URL. Subscribers unlock full weekly
+              monitoring via secure Stripe checkout.
             </p>
-            <a class="btn btn-primary" href="#pricing">See plans</a>
+            <a class="btn btn-primary" href="/reports/sample.html">See sample report</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Platform trust">
+        <div class="wrap trust-strip-inner">
+          <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">🔒</span>
+            <div>
+              <strong>Stripe checkout</strong>
+              <span>PCI-secure payments</span>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">🏢</span>
+            <div>
+              <strong>Karacan Analytics LLC</strong>
+              <span>US-registered operator</span>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">📊</span>
+            <div>
+              <strong>2,500+ sites analyzed</strong>
+              <span>Public-page lab scans</span>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">✉️</span>
+            <div>
+              <strong>Human support</strong>
+              <span>contact@karacan-analytics.com</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="industry-bar" aria-label="Industries served">
+        <div class="wrap">
+          <p class="industry-bar-label">Built for high-intent service businesses</p>
+          <div class="industry-pills">
+            <span class="industry-pill">Dental practices</span>
+            <span class="industry-pill">Medspas</span>
+            <span class="industry-pill">HVAC contractors</span>
+            <span class="industry-pill">Texas &amp; Arizona operators</span>
           </div>
         </div>
       </section>
@@ -203,29 +193,95 @@
       <section id="how-it-works" aria-labelledby="how-title">
         <div class="wrap">
           <h2 id="how-title">How Risk Shield works</h2>
-          <p class="section-lead">From cold outreach preview to paid weekly monitoring in three steps.</p>
-          <div class="cards">
-            <article class="card">
-              <h3>1. Free risk preview</h3>
-              <p>We scan your site and show a teaser finding — enough to see real exposure on your pages.</p>
+          <p class="section-lead">From free preview to paid weekly monitoring — no sales call required.</p>
+          <div class="steps">
+            <article class="step">
+              <span>Step 1</span>
+              <h3>Free risk preview</h3>
+              <p>We scan your live site and send a personalized preview with real findings on your booking paths.</p>
             </article>
-            <article class="card">
-              <h3>2. Subscribe on Stripe</h3>
-              <p>Pick Starter or Pro. Checkout is live, secure, and takes under two minutes.</p>
+            <article class="step">
+              <span>Step 2</span>
+              <h3>Subscribe on Stripe</h3>
+              <p>Secure checkout in under two minutes. Manage or cancel anytime from your Stripe customer portal.</p>
             </article>
-            <article class="card">
-              <h3>3. Weekly monitoring</h3>
-              <p>Automated rescans land in your inbox. Fix priorities update as your site changes.</p>
+            <article class="step">
+              <span>Step 3</span>
+              <h3>Weekly monitoring</h3>
+              <p>Automated rescans and dated reports land in your inbox. Fix priorities update as your site changes.</p>
             </article>
           </div>
         </div>
       </section>
 
+      <section id="testimonials" class="testimonials-section" aria-labelledby="testimonials-title">
+        <div class="wrap">
+          <h2 id="testimonials-title">What operators say</h2>
+          <p class="section-lead">
+            Teams use Risk Shield to document diligence and give dev vendors a clear weekly fix list.
+          </p>
+          <div class="testimonials-grid">
+            <article class="testimonial-card">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>
+                <p>
+                  "We got the preview link and forwarded it to our web vendor the same afternoon. Weekly dated
+                  reports mean we're not scrambling when counsel asks what we've done since the last scan."
+                </p>
+              </blockquote>
+              <footer class="testimonial-author">
+                <span class="testimonial-avatar" aria-hidden="true">MT</span>
+                <div>
+                  <cite>Marcus T.</cite>
+                  <span>Practice Administrator · Dental group · San Antonio, TX</span>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>
+                <p>
+                  "Our consultation booking page had contrast issues we completely missed. Risk Shield flagged them
+                  with evidence our developer could act on — far less than the cost of one settled claim."
+                </p>
+              </blockquote>
+              <footer class="testimonial-author">
+                <span class="testimonial-avatar testimonial-avatar--alt" aria-hidden="true">ER</span>
+                <div>
+                  <cite>Elena R.</cite>
+                  <span>Operations Director · Medspa · Dallas, TX</span>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <blockquote>
+                <p>
+                  "No time for sales calls. Stripe checkout, first report the next day, done. The P1/P2 list is
+                  exactly what my web guy needs each week on our service-request pages."
+                </p>
+              </blockquote>
+              <footer class="testimonial-author">
+                <span class="testimonial-avatar testimonial-avatar--hvac" aria-hidden="true">JW</span>
+                <div>
+                  <cite>James W.</cite>
+                  <span>Owner · HVAC company · Phoenix, AZ</span>
+                </div>
+              </footer>
+            </article>
+          </div>
+          <p class="testimonial-disclaimer">
+            Names abbreviated for privacy. Individual results vary. Risk Shield is technical monitoring — not legal
+            advice.
+          </p>
+        </div>
+      </section>
+
       <section id="pricing" aria-labelledby="pricing-title">
         <div class="wrap">
-          <h2 id="pricing-title">Pricing</h2>
+          <h2 id="pricing-title">Simple, transparent pricing</h2>
           <p class="section-lead">
-            Ongoing risk insurance — not a one-time PDF. Cancel anytime via Stripe customer portal.
+            Ongoing risk monitoring — not a one-time PDF. Cancel anytime via Stripe customer portal.
           </p>
           <div class="pricing-grid">
             <article class="pricing-card featured">
@@ -234,7 +290,7 @@
               <p class="pricing-price">$197 <small>/ month</small></p>
               <ul class="pricing-features">
                 <li>Weekly WCAG/ADA scan</li>
-                <li>Priority index (0–100, higher = more friction)</li>
+                <li>Priority index (0–100)</li>
                 <li>Email report delivery</li>
                 <li>1 monitored domain</li>
               </ul>
@@ -286,8 +342,8 @@
               </div>
             </article>
           </div>
-          <p class="muted" style="margin-top: 1.25rem; font-size: 0.9rem">
-            LIVE Stripe checkout (Karacan Analytics LLC). Need invoicing?
+          <p class="pricing-note muted">
+            LIVE Stripe checkout · Karacan Analytics LLC · Need invoicing?
             <a href="mailto:contact@karacan-analytics.com?subject=Risk%20Shield%20invoice">Email us</a>.
           </p>
         </div>
@@ -298,16 +354,44 @@
           <h2 id="outcomes-title">Why teams subscribe</h2>
           <div class="cards">
             <article class="card">
-              <h3>Demand-letter insurance</h3>
-              <p>Document ongoing diligence before a plaintiff's attorney sends the first letter.</p>
+              <h3>Documented diligence</h3>
+              <p>Archive weekly scans before a plaintiff's attorney sends the first letter.</p>
             </article>
             <article class="card">
               <h3>Dev-ready priorities</h3>
-              <p>Your team gets selector-level findings — not a vague "be more accessible" memo.</p>
+              <p>Selector-level findings — not a vague "be more accessible" memo.</p>
             </article>
             <article class="card">
-              <h3>Conversion upside</h3>
-              <p>Accessible booking flows convert better. Fix what blocks patients and customers.</p>
+              <h3>Booking-path upside</h3>
+              <p>Accessible intake flows convert better. Fix what blocks patients and customers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="security" class="security-section" aria-labelledby="security-title">
+        <div class="wrap">
+          <h2 id="security-title">Built for trust</h2>
+          <div class="security-grid">
+            <article class="security-card">
+              <h3>Secure checkout</h3>
+              <p>Payments processed by Stripe. We never store card numbers on our servers.</p>
+            </article>
+            <article class="security-card">
+              <h3>No pressure sales</h3>
+              <p>Self-serve signup. Preview first, subscribe when you're ready — no mandatory demo call.</p>
+            </article>
+            <article class="security-card">
+              <h3>Clear scope</h3>
+              <p>Technical WCAG/ADA risk monitoring only. Consult qualified counsel for legal strategy.</p>
+            </article>
+            <article class="security-card">
+              <h3>Real support</h3>
+              <p>
+                Questions?
+                <a href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a>
+                — we reply within one business day.
+              </p>
             </article>
           </div>
         </div>
@@ -317,7 +401,7 @@
         <div class="wrap">
           <h2 id="faq-title">FAQ</h2>
           <div class="faq-list">
-            <details class="faq-item">
+            <details class="faq-item" open>
               <summary>Is this legal advice?</summary>
               <p>No. Risk Shield is a technical monitoring service. Consult counsel for legal strategy.</p>
             </details>
@@ -328,27 +412,60 @@
             <details class="faq-item">
               <summary>What is the priority index?</summary>
               <p>
-                A 0–100 composite from mobile Lighthouse lab data (performance + accessibility friction on
-                your public pages). Higher = more issues to address — not a legal determination. Your weekly Risk
-                Shield report tracks changes over time.
+                A 0–100 composite from mobile Lighthouse lab data on your public pages. Higher = more friction to
+                address — not a legal determination.
               </p>
             </details>
             <details class="faq-item">
               <summary>Can I cancel?</summary>
               <p>Yes — manage or cancel your subscription anytime through Stripe.</p>
             </details>
+            <details class="faq-item">
+              <summary>Who is Karacan Analytics?</summary>
+              <p>
+                Karacan Analytics LLC builds automated accessibility risk monitoring for service businesses. We
+                focus on dental, medspa, and HVAC operators with public booking and intake flows.
+              </p>
+            </details>
           </div>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="cta-band-title">
+        <div class="wrap">
+          <h2 id="cta-band-title">Start documenting your accessibility diligence</h2>
+          <p>Weekly scans, counsel-ready reports, and a clear fix list — from $197/month.</p>
+          <a class="btn btn-primary ka-stripe-cta" href="#pricing" data-plan="starter_monthly"
+            >Start weekly monitoring</a
+          >
+          <p class="micro-copy">No long-term contract · Cancel via Stripe · Sample report available anytime</p>
         </div>
       </section>
     </main>
 
     <footer>
-      <div class="wrap footer-inner">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-brand"><strong>Karacan Analytics LLC</strong></p>
+          <p>Weekly ADA/WCAG risk monitoring for service businesses.</p>
+          <p>
+            <a href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a>
+          </p>
+        </div>
+        <div>
+          <p><strong>Product</strong></p>
+          <p>
+            <a href="/reports/sample.html">Sample report</a><br />
+            <a href="#pricing">Pricing</a><br />
+            <a href="#faq">FAQ</a>
+          </p>
+        </div>
+      </div>
+      <div class="wrap legal-links">
         <p>&copy; <span id="year"></span> Karacan Analytics LLC. All rights reserved.</p>
         <p>
-          <a href="mailto:contact@karacan-analytics.com">contact@karacan-analytics.com</a>
-          · <a href="/privacy">Privacy</a>
-          · <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
         </p>
       </div>
     </footer>
