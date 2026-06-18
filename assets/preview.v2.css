@@ -1,5 +1,5 @@
 body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0;background:#0d1117;color:#e6edf3;line-height:1.5}
-.wrap{max-width:920px;margin:0 auto;padding:28px 16px 48px}
+.wrap{max-width:920px;margin:0 auto;padding:28px 16px 100px}
 .preview-header{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #30363d}
 .preview-brand{margin:0;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#58a6ff}
 .preview-meta{margin:6px 0 0;font-size:13px;color:#8b949e}
@@ -19,6 +19,21 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .preview-legal a{color:#8b949e}
 .list{margin:0;padding-left:20px;line-height:1.65}
 .findings-list li{margin-bottom:8px}
+.findings-list--hero li{font-size:15px;font-weight:500}
+.findings-list--hero .blur-finding{filter:blur(4px);user-select:none;opacity:.85}
+.hero-cta-card{border:1px solid #3d444d;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.hero-lead{margin:0 0 14px;font-size:16px;line-height:1.55;color:#c9d1d9}
+.findings-unlock{margin:12px 0 0;font-size:13px}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
+.cta--hero{padding:14px 22px;font-size:16px}
+.cta-secondary{display:inline-block;color:#58a6ff;font-weight:600;text-decoration:none;font-size:14px;padding:12px 4px}
+.cta-secondary:hover{text-decoration:underline}
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:100;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(13,17,23,.94);border-top:1px solid #30363d;backdrop-filter:blur(10px)}
+.sticky-cta-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sticky-cta-copy{margin:0;font-size:13px;color:#8b949e;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sticky-cta-copy strong{color:#e6edf3}
+.cta--sticky{padding:12px 20px;font-size:15px;white-space:nowrap;flex-shrink:0}
+@media (min-width:900px){.sticky-cta{display:none}.wrap{padding-bottom:48px}}
 .teaser{background:linear-gradient(180deg,#0f172a 0%,#161b22 100%);border:1px solid #233042}
 .plan-includes{line-height:1.65}
 .money{font-size:20px;font-weight:800;color:#7ee787;margin:16px 0 12px}

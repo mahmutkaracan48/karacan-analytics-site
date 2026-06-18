@@ -44,6 +44,31 @@ const SEGMENT_COPY: Record<
 
 const DEFAULT_ROI = "$144,000";
 
+const ANTI_SELL_RE = /passed basic lab|monitoring continues weekly/i;
+
+const SEGMENT_TEASERS: Record<SegmentKey, string[]> = {
+  Dental: [
+    "New-patient booking forms often fail contrast or missing aria-label checks on mobile.",
+    "Homepage appointment CTAs are a frequent target in ADA demand letters.",
+    "Intake flows without visible focus states block keyboard users from booking.",
+  ],
+  Medspa: [
+    "Consultation booking buttons often lack accessible names on mobile service menus.",
+    "Before/after galleries frequently ship without alt text on high-intent pages.",
+    "Promo landing pages with low contrast offers are common settlement triggers.",
+  ],
+  HVAC: [
+    "Emergency service CTAs on mobile often sit below slow-loading hero assets.",
+    "Estimate request forms frequently miss labels tied to screen readers.",
+    "Financing and service-area pages are common friction points on contractor sites.",
+  ],
+  GENERAL: [
+    "Lead-capture forms on mobile often fail basic contrast and label checks.",
+    "Primary CTAs without accessible names block keyboard users from converting.",
+    "Slow mobile LCP on landing pages correlates with drop-off before contact.",
+  ],
+};
+
 export function normalizeSegment(raw: string | null | undefined): SegmentKey {
   const s = String(raw || "").trim().toLowerCase();
   if (s === "dental") return "Dental";
@@ -74,6 +99,70 @@ export function performanceScore(scan: ScanPreview): number | null {
 
 export function priorityScore(scan: ScanPreview): number | null {
   return scan.psi_score;
+}
+
+/** Higher = more public-page friction (aligns with risk urgency, not Lighthouse perf). */
+export function attentionScore(scan: ScanPreview): number | null {
+  const composite = scan.psi_score;
+  const critical = Math.max(0, scan.critical_issues_count || 0);
+  const perf = performanceScore(scan);
+  let score = composite ?? 0;
+  if (perf != null) score = Math.max(score, Math.round((100 - perf) * 0.85));
+  score = Math.max(score, critical * 18);
+  if (!scan.psi_ok) score = Math.max(score, 58);
+  const label = String(scan.risk_label || "").toUpperCase();
+  if (label.includes("HIGH")) score = Math.max(score, 78);
+  else if (label.includes("ELEVATED")) score = Math.max(score, 62);
+  return Math.min(99, Math.max(28, score));
+}
+
+const ARTICLE_PREFIXES = new Set(["the", "a", "an", "our", "your", "new", "best", "top", "all", "my"]);
+
+export function displayFirstName(scan: ScanPreview): string {
+  const fn = String(scan.first_name || "").trim();
+  if (fn && !ARTICLE_PREFIXES.has(fn.toLowerCase()) && fn.length > 1) return fn;
+
+  const company = String(scan.company_name || "").trim();
+  const parts = company.split(/\s+/).filter(Boolean);
+  if (!parts.length) return "there";
+  if (ARTICLE_PREFIXES.has(parts[0].toLowerCase()) && parts[1]) {
+    const second = parts[1];
+    if (!ARTICLE_PREFIXES.has(second.toLowerCase())) return second;
+  }
+  if (ARTICLE_PREFIXES.has(parts[0].toLowerCase())) return "there";
+  return parts[0];
+}
+
+export function heroFindings(scan: ScanPreview): string[] {
+  const seg = inferSegment(scan);
+  const teasers = SEGMENT_TEASERS[seg];
+  const company = scan.company_name || "your site";
+  let items = (Array.isArray(scan.findings_json) ? scan.findings_json : [])
+    .map((f) => String(f).trim())
+    .filter((f) => f && !ANTI_SELL_RE.test(f));
+
+  if (!scan.psi_ok) {
+    if (items.length) return items.slice(0, 3);
+    return [
+      `Early mobile lab signals on ${company}'s public booking paths are being finalized.`,
+      teasers[0],
+      teasers[1],
+    ];
+  }
+
+  if (items.length < 2) {
+    items = [...items, ...teasers];
+  }
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const item of items) {
+    const key = item.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+    if (out.length >= 4) break;
+  }
+  return out.length ? out : teasers.slice(0, 3);
 }
 
 function perfForRoi(scan: ScanPreview): number | null {
