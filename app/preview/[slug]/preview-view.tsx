@@ -185,7 +185,7 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
 
       <div className="card">
         <h2>What Risk Shield adds after checkout</h2>
-        <ul className="list snapshot-includes">
+        <ul className="list plan-includes">
           <li>Weekly automated WCAG / PageSpeed rescans on your domain</li>
           <li>Dated compliance reports you can share with counsel or leadership</li>
           <li>P1 / P2 / P3 remediation list your dev team can execute</li>

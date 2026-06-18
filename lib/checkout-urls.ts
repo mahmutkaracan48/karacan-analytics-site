@@ -34,10 +34,10 @@ export function offerUrls(scan: {
   company_name?: string | null;
   website?: string | null;
 }) {
-  const monthly = appendCheckoutParams(
-    String(scan.offer_url || "").trim() || CHECKOUT.starterMonthly,
-    scan,
-  );
+  const stored = String(scan.offer_url || "").trim();
+  const legacyOffer = stored.includes("5kQ8wQ");
+  const monthlyBase = stored && !legacyOffer ? stored : CHECKOUT.starterMonthly;
+  const monthly = appendCheckoutParams(monthlyBase, scan);
   return {
     monthly,
     annual: appendCheckoutParams(CHECKOUT.starterAnnual, scan),
