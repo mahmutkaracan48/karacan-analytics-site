@@ -42,7 +42,35 @@ const SEGMENT_COPY: Record<
   },
 };
 
-const DEFAULT_ROI = "$144,000";
+const SEGMENT_ROI_HERO: Record<
+  SegmentKey,
+  { title: string; unitLow: number; unitHigh: number; unitLabel: string }
+> = {
+  Dental: {
+    title: "New-patient booking impact",
+    unitLow: 450,
+    unitHigh: 850,
+    unitLabel: "lost online new-patient appointment",
+  },
+  Medspa: {
+    title: "Consultation booking impact",
+    unitLow: 350,
+    unitHigh: 700,
+    unitLabel: "missed consultation request",
+  },
+  HVAC: {
+    title: "Service lead impact",
+    unitLow: 280,
+    unitHigh: 550,
+    unitLabel: "lost service call or estimate request",
+  },
+  GENERAL: {
+    title: "Lead-capture impact",
+    unitLow: 300,
+    unitHigh: 600,
+    unitLabel: "lost booking or contact request",
+  },
+};
 
 const ANTI_SELL_RE = /passed basic lab|monitoring continues weekly/i;
 
@@ -142,7 +170,7 @@ export function heroFindings(scan: ScanPreview): string[] {
     .filter((f) => f && !ANTI_SELL_RE.test(f));
 
   if (!scan.psi_ok) {
-    if (items.length) return items.slice(0, 3);
+    if (items.length) return items;
     return [
       `Early mobile lab signals on ${company}'s public booking paths are being finalized.`,
       teasers[0],
@@ -160,9 +188,8 @@ export function heroFindings(scan: ScanPreview): string[] {
     if (seen.has(key)) continue;
     seen.add(key);
     out.push(item);
-    if (out.length >= 4) break;
   }
-  return out.length ? out : teasers.slice(0, 3);
+  return out.length ? out : teasers;
 }
 
 function perfForRoi(scan: ScanPreview): number | null {
@@ -189,20 +216,24 @@ export function computeMonthlyRoi(scan: ScanPreview): number {
   return Math.min(Math.round(base * mult), cap);
 }
 
-export function displayRoi(scan: ScanPreview): { monthly: string; note: string } {
-  const stored = String(scan.roi_display || "").trim();
-  if (stored && stored !== DEFAULT_ROI && !stored.includes("–") && !stored.endsWith("/mo")) {
-    return { monthly: stored, note: "Modeled from public-page friction signals." };
-  }
-
+export function displayRoi(scan: ScanPreview): {
+  monthly: string;
+  title: string;
+  heroLine: string;
+  note: string;
+} {
+  const seg = inferSegment(scan);
+  const hero = SEGMENT_ROI_HERO[seg];
   const high = computeMonthlyRoi(scan);
   const low = Math.max(Math.round(high * 0.68), Math.round(high * 0.55));
-  const seg = inferSegment(scan);
   const signals = scan.critical_issues_count || 0;
+  const unitRange = `${formatMoney(hero.unitLow)}–${formatMoney(hero.unitHigh)}`;
 
   return {
     monthly: `${formatMoney(low)}–${formatMoney(high)}/mo`,
-    note: `Conservative model for ${SEGMENT_COPY[seg].label} sites (${signals} priority signal${signals === 1 ? "" : "s"} on your URL).`,
+    title: hero.title,
+    heroLine: `Each ${hero.unitLabel} from ${SEGMENT_COPY[seg].hook} is often worth ${unitRange}.`,
+    note: `Modeled for ${SEGMENT_COPY[seg].label} sites · ${signals} priority signal${signals === 1 ? "" : "s"} on your URL.`,
   };
 }
 

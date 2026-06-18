@@ -20,10 +20,10 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .list{margin:0;padding-left:20px;line-height:1.65}
 .findings-list li{margin-bottom:8px}
 .findings-list--hero li{font-size:15px;font-weight:500}
-.findings-list--hero .blur-finding{filter:blur(4px);user-select:none;opacity:.85}
 .hero-cta-card{border:1px solid #3d444d;box-shadow:0 8px 32px rgba(0,0,0,.35)}
 .hero-lead{margin:0 0 14px;font-size:16px;line-height:1.55;color:#c9d1d9}
 .findings-unlock{margin:12px 0 0;font-size:13px}
+.roi-hero-line{margin:8px 0 10px;font-size:15px;font-weight:600;line-height:1.45;color:#ecfdf5}
 .hero-cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
 .cta--hero{padding:14px 22px;font-size:16px}
 .cta-secondary{display:inline-block;color:#58a6ff;font-weight:600;text-decoration:none;font-size:14px;padding:12px 4px}
@@ -35,8 +35,8 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .cta--sticky{padding:12px 20px;font-size:15px;white-space:nowrap;flex-shrink:0}
 @media (min-width:900px){.sticky-cta{display:none}.wrap{padding-bottom:48px}}
 .teaser{background:linear-gradient(180deg,#0f172a 0%,#161b22 100%);border:1px solid #233042}
-.plan-includes{line-height:1.65}
-.money{font-size:20px;font-weight:800;color:#7ee787;margin:16px 0 12px}
+.card--footer{padding:18px 24px}
+.footer-includes{margin:0;font-size:14px;color:#c9d1d9;line-height:1.55}
 .trust{font-size:12px;color:#6e7681;border-top:1px solid #30363d;margin-top:18px;padding-top:14px;line-height:1.55}
 .risk-dashboard{margin-bottom:16px;display:grid;gap:14px}
 @media (min-width:720px){.risk-dashboard{grid-template-columns:1.15fr 1fr}}
