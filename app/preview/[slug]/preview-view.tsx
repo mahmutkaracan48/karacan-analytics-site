@@ -109,8 +109,8 @@ export function PreviewPage({ scan }: { scan: ScanPreview }) {
   const company = esc(scan.company_name || "your business");
   const risk = esc(riskHeadline(scan));
   const offers = offerUrls(scan);
-  const activation = esc(offers.activation);
-  const monthly = esc(offers.monthly);
+  const activation = offers.activation;
+  const monthly = offers.monthly;
   const psiOk = !!scan.psi_ok;
   const seg = segmentCopy(scan);
   const roi = displayRoi(scan);
