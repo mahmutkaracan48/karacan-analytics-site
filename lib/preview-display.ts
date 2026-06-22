@@ -277,3 +277,52 @@ export function priorityLabel(scan: ScanPreview): string {
 export function riskHeadline(scan: ScanPreview): string {
   return String(scan.risk_label || "ELEVATED RISK").replace(/_/g, " ");
 }
+
+const STATE_SETTLEMENT: Record<string, { low: number; high: number; label: string }> = {
+  TX: { low: 8_000, high: 22_000, label: "Texas" },
+  AZ: { low: 7_500, high: 20_000, label: "Arizona" },
+  DEFAULT: { low: 8_000, high: 22_000, label: "your state" },
+};
+
+const SEGMENT_DEFAULT_STATE: Record<SegmentKey, string> = {
+  Dental: "TX",
+  Medspa: "TX",
+  HVAC: "AZ",
+  GENERAL: "TX",
+};
+
+export function inferState(scan: ScanPreview): string {
+  const raw = String(scan.state || "").trim().toUpperCase();
+  if (raw === "TEXAS" || raw === "TX") return "TX";
+  if (raw === "ARIZONA" || raw === "AZ") return "AZ";
+  return SEGMENT_DEFAULT_STATE[inferSegment(scan)];
+}
+
+export function settlementBlock(scan: ScanPreview): {
+  stateLabel: string;
+  low: string;
+  high: string;
+  monitoringAnnual: string;
+  dailyCost: string;
+  pctOfLow: string;
+} {
+  const code = inferState(scan);
+  const block = STATE_SETTLEMENT[code] || STATE_SETTLEMENT.DEFAULT;
+  const low = block.low;
+  const high = block.high;
+  const annual = 1970;
+  const pct = ((annual / low) * 100).toFixed(1);
+  return {
+    stateLabel: block.label,
+    low: formatMoney(low),
+    high: formatMoney(high),
+    monitoringAnnual: formatMoney(annual),
+    dailyCost: "$6.56",
+    pctOfLow: pct,
+  };
+}
+
+export function lockedFindings(scan: ScanPreview): string[] {
+  const all = heroFindings(scan);
+  return all.slice(2);
+}

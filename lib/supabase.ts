@@ -7,6 +7,7 @@ export type ScanPreview = {
   company_name: string | null;
   website: string | null;
   segment: string | null;
+  state: string | null;
   offer_url: string | null;
   domain: string | null;
   psi_score: number | null;
@@ -34,7 +35,7 @@ export async function fetchPreviewBySlug(slug: string): Promise<ScanPreview | nu
   const { data, error } = await supabase
     .from("scan_results")
     .select(
-      "preview_slug,email,first_name,company_name,website,segment,offer_url,domain,psi_score,psi_perf_score,psi_acc_score,psi_ok,critical_issues_count,findings_json,risk_label,roi_display,scanned_at"
+      "preview_slug,email,first_name,company_name,website,segment,state,offer_url,domain,psi_score,psi_perf_score,psi_acc_score,psi_ok,critical_issues_count,findings_json,risk_label,roi_display,scanned_at"
     )
     .eq("preview_slug", slug)
     .eq("scan_type", "outbound_preview")

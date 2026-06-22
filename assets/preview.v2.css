@@ -33,7 +33,7 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .sticky-cta-copy{margin:0;font-size:13px;color:#8b949e;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sticky-cta-copy strong{color:#e6edf3}
 .cta--sticky{padding:12px 20px;font-size:15px;white-space:nowrap;flex-shrink:0}
-@media (min-width:900px){.sticky-cta{display:none}.wrap{padding-bottom:48px}}
+@media (min-width:900px){.wrap{padding-bottom:88px}}
 .teaser{background:linear-gradient(180deg,#0f172a 0%,#161b22 100%);border:1px solid #233042}
 .card--footer{padding:18px 24px}
 .footer-includes{margin:0;font-size:14px;color:#c9d1d9;line-height:1.55}
@@ -44,6 +44,7 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .risk-alert-eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fecaca}
 .risk-alert-value{margin:8px 0 6px;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:.04em;color:#fff}
 .risk-alert-sub{margin:0;font-size:14px;color:#fee2e2;line-height:1.5}
+.risk-alert-cta{margin-top:16px}
 .roi-card{background:linear-gradient(135deg,#14532d 0%,#166534 50%,#15803d 100%);border:1px solid #86efac;border-radius:14px;padding:22px 24px;box-shadow:0 12px 40px rgba(34,197,94,.18)}
 .roi-label{margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#bbf7d0}
 .roi-value{margin:10px 0 8px;font-size:clamp(1.6rem,3vw,2.35rem);font-weight:800;color:#fff;letter-spacing:-.02em}
@@ -61,5 +62,29 @@ h2{margin:0 0 12px;font-size:1.15rem;font-weight:700}
 .metric-chip{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:12px 14px}
 .metric-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8b949e;margin-bottom:4px}
 .metric-value{display:block;font-size:1.1rem;font-weight:800;color:#e6edf3}
+.metric-chip--locked{border-style:dashed;border-color:#484f58;background:#0d1117}
+.metric-value--locked{font-size:.95rem;color:#8b949e;font-weight:700}
+.metric-lock-hint{display:block;margin-top:4px;font-size:11px;line-height:1.4;color:#6e7681}
+.findings-gate{margin-top:16px;padding:16px 18px;border:1px dashed #484f58;border-radius:12px;background:#0d1117}
+.findings-gate-eyebrow{margin:0 0 10px;font-size:14px;font-weight:700;color:#fbbf24}
+.findings-list--locked{filter:blur(5px);opacity:.55;user-select:none;pointer-events:none;margin:0 0 12px}
+.findings-unlock a{color:#58a6ff;font-weight:700;text-decoration:none}
+.findings-unlock a:hover{text-decoration:underline}
+.roi-card--gated{position:relative}
+.roi-locked{margin-top:8px;padding-top:12px;border-top:1px solid rgba(134,239,172,.25)}
+.roi-value--blur{filter:blur(8px);opacity:.45;user-select:none;pointer-events:none;margin:0 0 10px}
+.roi-lock-note{margin:0 0 14px;font-size:13px;line-height:1.5;color:#dcfce7}
+.cta--roi-lock{display:inline-block;padding:11px 16px;font-size:14px}
+.settlement-block{margin-top:10px;line-height:1.55}
+.what-next{margin:14px 0 0;font-size:14px;line-height:1.55}
+.sticky-cta-inner--stack{flex-wrap:wrap}
+.sticky-cta-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;flex-shrink:0}
+.cta-secondary--sticky{font-size:12px;padding:8px 4px;white-space:nowrap}
+@media (max-width:640px){
+.sticky-cta-inner--stack{flex-direction:column;align-items:stretch}
+.sticky-cta-actions{flex-direction:column;width:100%}
+.cta--sticky{width:100%;text-align:center}
+.cta-secondary--sticky{text-align:center;width:100%}
+}
 .priority-banner{margin:0 0 16px;padding:12px 14px;background:#161b22;border:1px solid #30363d;border-radius:10px;font-size:13px}
 code{font-size:12px;background:#21262d;padding:2px 6px;border-radius:4px}
