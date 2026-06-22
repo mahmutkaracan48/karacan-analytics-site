@@ -323,6 +323,20 @@ export function settlementBlock(scan: ScanPreview): {
 }
 
 export function lockedFindings(scan: ScanPreview): string[] {
+  return partitionFindings(scan).locked;
+}
+
+/** First finding → hero lead; next teasers → visible list; rest → locked (no duplicate render). */
+export function partitionFindings(scan: ScanPreview): {
+  lead: string | null;
+  visible: string[];
+  locked: string[];
+} {
   const all = heroFindings(scan);
-  return all.slice(2);
+  const teaserCount = 2;
+  return {
+    lead: all[0] || null,
+    visible: all.slice(1, teaserCount),
+    locked: all.slice(teaserCount),
+  };
 }
